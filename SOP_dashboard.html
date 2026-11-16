@@ -1,0 +1,997 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light"><title>企业参访 · SOP 执行台</title>
+<style>
+:root{--ink:#182d31;--muted:#63787b;--line:#dce5e4;--paper:#fff;--bg:#f3f6f4;--accent:#106c60;--soft:#e4f1eb;--warn:#8a570f;--danger:#a43232;--radius:14px;font-family:system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:var(--bg);font-size:14px}*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit}button{cursor:pointer;touch-action:manipulation}button,input,select,textarea{border:1px solid var(--line);border-radius:8px;background:white;color:var(--ink)}button{padding:9px 13px;font-weight:600}button:hover{background:#eef5f1;border-color:#b0cac0}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid #75b8a8;outline-offset:2px}.primary{background:var(--accent);color:white;border-color:var(--accent)}.primary:hover{background:#07594f}.quiet{background:transparent}.danger{color:var(--danger)}input,select{padding:10px;min-height:40px}textarea{padding:10px;line-height:1.7;resize:vertical;width:100%;min-height:90px}input[type=checkbox]{min-height:0}a{color:var(--accent)}.shell{max-width:1580px;margin:0 auto;padding:30px 34px 70px}.eyebrow{font-size:11px;letter-spacing:2px;font-weight:800;color:var(--accent);margin:0 0 10px}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:24px}.top h1{font-size:32px;letter-spacing:-1px;margin:0 0 10px}.sub{color:var(--muted);line-height:1.7;margin:0}.top-right{display:flex;flex-direction:column;align-items:flex-end;gap:10px}.actions{display:flex;gap:8px;flex-wrap:wrap}.save-state{color:var(--accent);font-size:12px}.save-state.failed{color:var(--danger);font-weight:700}.storage-note{font-size:12px;color:var(--muted);margin-top:15px;line-height:1.7}.config{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:16px 18px;background:white;border:1px solid var(--line);border-radius:var(--radius);margin-top:22px}.config label{display:flex;gap:8px;align-items:center;font-size:12px;font-weight:600}.config small{color:var(--muted)}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.metric{border:1px solid var(--line);background:white;border-radius:12px;padding:17px 20px;display:flex;justify-content:space-between;align-items:center}.metric span{color:var(--muted);font-size:12px}.metric b{font-size:26px}.metric.good{background:var(--soft);border-color:#c6dfd4}.toolbar{position:sticky;top:0;z-index:8;background:rgba(243,246,244,.97);padding:12px 0 16px;border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}.toolbar-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.tabs{display:flex;background:#e5edE8;border-radius:10px;padding:4px;margin-right:auto}.tabs button{border:0;background:transparent;padding:9px 18px;color:var(--muted)}.tabs button[aria-selected=true]{background:white;box-shadow:0 2px 6px #16382b12;color:var(--accent)}.filters{display:grid;grid-template-columns:minmax(220px,1fr) repeat(3,minmax(120px,170px)) auto;gap:10px;margin-top:13px}.search{width:100%}.filter-label{font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:5px}.filter-label input,.filter-label select{width:100%}.reset-filter{align-self:end}.view-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:25px 0 14px}.view-head h2{font-size:19px;margin:0}.view-head p{margin:6px 0 0;color:var(--muted);font-size:12px;line-height:1.7}.chips{display:flex;gap:6px;flex-wrap:wrap}.chip{border-radius:20px;padding:5px 10px;background:white;border:1px solid var(--line);color:var(--muted);font-size:11px}.phase{border:1px solid var(--line);border-radius:var(--radius);background:white;margin-bottom:20px;overflow:hidden}.phase-heading{padding:18px 20px;display:flex;gap:12px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.phase-heading h3{margin:0;font-size:16px}.phase-heading p{margin:4px 0 0;color:var(--muted);font-size:12px}.phase-num{font-size:11px;letter-spacing:1px;color:var(--accent);margin-right:9px}.gantt-scroll{overflow:auto;max-height:650px;position:relative;overscroll-behavior-x:contain}.gantt-grid{display:grid;grid-template-columns:228px minmax(var(--axis-min),1fr) 150px;min-width:calc(var(--axis-min) + 378px);font-size:12px;position:relative}.axis-name,.axis-track,.axis-time{position:sticky;top:0;z-index:5;background:#f5f8f6;border-bottom:1px solid var(--line);height:40px;padding:12px}.axis-name{left:0;z-index:7}.axis-track{padding:0;display:grid;grid-template-columns:repeat(var(--ticks),1fr)}.axis-track span{border-left:1px solid #e5ece8;font-size:10px;display:flex;align-items:center;justify-content:center;color:var(--muted)}.owner-band{grid-column:1/-1;padding:9px 14px;background:#f3f7f5;border-bottom:1px solid var(--line);font-weight:700;display:flex;gap:9px;align-items:center}.owner-dot{height:8px;width:8px;border-radius:3px;background:var(--owner-color);display:inline-block;flex-shrink:0}.task-name{position:sticky;left:0;z-index:2;display:flex;align-items:center;gap:7px;padding:9px 12px;background:white;border:0;border-bottom:1px solid #edf1ef;border-radius:0;text-align:left;font-size:12px;font-weight:500;min-height:48px}.task-name:hover{background:#f0f7f3}.code{font-family:ui-monospace,SFMono-Regular,monospace;font-size:11px;color:var(--muted);font-weight:500;white-space:nowrap}.track{position:relative;min-height:48px;border-bottom:1px solid #edf1ef;background:repeating-linear-gradient(to right,transparent 0,transparent calc(100% / var(--ticks) - 1px),#edf1ef calc(100% / var(--ticks) - 1px),#edf1ef calc(100% / var(--ticks)))}.bar{position:absolute;top:9px;height:30px;display:flex;align-items:center;min-width:6px;background:var(--owner-color);color:white;border:1px solid #00000008;border-radius:6px;cursor:grab;user-select:none;touch-action:none;box-shadow:0 2px 4px #203d2515;outline-offset:2px}.bar.done{opacity:.55}.bar.blocked{background:repeating-linear-gradient(135deg,var(--owner-color),var(--owner-color) 6px,#a85638 6px,#a85638 9px)}.bar-label{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;pointer-events:none;font-size:11px;font-weight:600;padding:0 10px}.handle{position:absolute;top:0;width:10px;height:100%;cursor:ew-resize;z-index:1;touch-action:none}.handle.left{left:0;border-radius:6px 0 0 6px}.handle.right{right:0;border-radius:0 6px 6px 0}.handle:after{content:"";position:absolute;height:12px;width:2px;left:4px;top:8px;background:#ffffff65}.bar.dragging{box-shadow:0 0 0 3px #a1d8be;z-index:6;opacity:.92}.row-time{display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--muted);border-bottom:1px solid #edf1ef;white-space:nowrap}.empty{padding:36px;text-align:center;color:var(--muted);background:white;border:1px dashed #cbdad2;border-radius:12px}.empty-inline{padding:22px;color:var(--muted);font-size:12px}.list-owner{margin-bottom:24px}.list-owner h3{display:flex;align-items:center;gap:8px;margin:0 0 10px;font-size:15px}.list-owner h3 small{font-size:12px;color:var(--muted);font-weight:400}.task-card{border:1px solid var(--line);border-left:3px solid var(--owner-color);border-radius:10px;background:white;margin:8px 0;overflow:hidden}.card-main{display:flex;width:100%;align-items:center;text-align:left;gap:12px;border:0;border-radius:0;padding:16px;font-weight:500;background:white}.card-title{font-weight:650;flex:1;min-width:0}.card-title small{display:block;font-size:11px;color:var(--muted);margin-top:5px;font-weight:400}.status{display:inline-flex;align-items:center;gap:5px;border-radius:20px;background:#f0f3f1;color:#61746a;padding:4px 9px;font-size:11px;white-space:nowrap}.status.进行中{background:#e6effb;color:#356298}.status.待验收{background:#fff0d6;color:#91601c}.status.已完成{background:#e1f2e6;color:#227343}.status.受阻{background:#fbe7e3;color:#9a4b3b}.card-time{color:var(--muted);font-size:12px;min-width:145px;text-align:right}.card-detail{padding:0 18px 18px;border-top:1px solid var(--line);background:#fbfcfb}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 25px;padding:14px 0}.detail-grid p{line-height:1.8;margin:5px 0 0;white-space:pre-wrap;word-break:break-word}.detail-grid dt{font-size:11px;color:var(--muted)}.detail-grid dd{margin:0}.detail-grid .wide{grid-column:1/-1}.link-button{font-size:11px;border:0;background:var(--soft);padding:3px 6px;margin:0 3px 3px 0;color:var(--accent)}.health{border:1px solid #e9d8b6;background:#fffaf0;border-radius:12px;margin-top:20px}.health summary{padding:14px 18px;color:var(--warn);cursor:pointer;font-size:12px;font-weight:600}.health-content{padding:0 18px 18px;font-size:12px;line-height:1.9;max-height:340px;overflow:auto}.health-content ul{padding-left:20px;margin:5px 0}.health-content .error{color:var(--danger)}.footer{font-size:11px;color:var(--muted);line-height:1.9;margin-top:24px}dialog{border:1px solid var(--line);border-radius:18px;box-shadow:0 25px 90px #183c3330;width:min(850px,calc(100% - 24px));padding:0;color:var(--ink);max-height:92dvh}dialog::backdrop{background:#162e365c;backdrop-filter:blur(3px)}.dialog-head{position:sticky;top:0;z-index:3;background:white;border-bottom:1px solid var(--line);padding:19px 24px;display:flex;align-items:center;justify-content:space-between;gap:12px}.dialog-head h2{font-size:19px;margin:0}.dialog-head p{font-size:11px;color:var(--muted);margin:5px 0 0}.dialog-body{padding:20px 24px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.field{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:600}.field input,.field select,.field textarea{width:100%;font-weight:400}.field.wide{grid-column:1/-1}.hint{font-size:11px;font-weight:400;color:var(--muted);line-height:1.7}.schedule-box{grid-column:1/-1;padding:15px;background:#f3f7f4;border:1px solid var(--line);border-radius:10px}.schedule-fields{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:10px;margin:12px 0 5px}.unit-prefix{font-size:12px;color:var(--accent);font-weight:600;margin-top:7px}.dialog-foot{position:sticky;bottom:0;background:white;padding:14px 24px;border-top:1px solid var(--line);display:flex;gap:10px;align-items:center;justify-content:space-between}.form-state{font-size:12px;color:var(--accent);line-height:1.7}.form-state.error{color:var(--danger)}.notice{padding:12px 14px;border-radius:9px;background:#fff6df;color:var(--warn);font-size:12px;line-height:1.8;margin-bottom:18px}.help-content{line-height:1.9;font-size:13px}.help-content h3{font-size:15px;margin-bottom:6px}.help-content p{margin-top:6px}pre.source-text{white-space:pre-wrap;word-break:break-word;font-family:inherit;line-height:1.8;font-size:12px;max-height:60dvh;overflow:auto}.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#163c35;color:white;padding:13px 20px;border-radius:12px;box-shadow:0 4px 20px #163c3528;max-width:min(650px,90vw);font-size:13px;z-index:30;line-height:1.7}.toast.error{background:#86392d}#dragTip{position:fixed;z-index:25;pointer-events:none;background:#123d34;color:white;font-size:12px;padding:8px 11px;border-radius:7px;box-shadow:0 3px 16px #123d342b}[hidden]{display:none!important}.unscheduled{padding:14px 18px;display:flex;gap:8px;flex-wrap:wrap}.unscheduled button{font-size:12px}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}body.drag-active{cursor:grabbing;user-select:none}@media(max-width:900px){.shell{padding:22px 18px 50px}.top{flex-direction:column;gap:15px}.top-right{align-items:flex-start}.filters{grid-template-columns:1fr 1fr 1fr}.filter-label:first-child{grid-column:1/-1}.reset-filter{grid-column:1/-1}.top h1{font-size:28px}.metric{padding:14px}.metric b{font-size:23px}.metrics{gap:8px}.gantt-grid{grid-template-columns:185px minmax(var(--axis-min),1fr) 140px;min-width:calc(var(--axis-min) + 325px)}.task-name{font-size:11px}.view-head{align-items:flex-start;flex-direction:column}.config{gap:10px}.config small{flex-basis:100%}}@media(max-width:580px){.shell{padding:20px 12px 40px}.metrics{grid-template-columns:1fr 1fr}.metric{padding:13px 16px}.metric span{font-size:11px}.filters{gap:8px}.filter-label select{font-size:12px}.toolbar{padding:9px 0 12px}.tabs button{padding:9px 13px}.card-main{padding:13px;gap:7px;flex-wrap:wrap}.card-title{flex-basis:60%}.card-time{margin-left:auto;font-size:11px;min-width:0}.detail-grid,.form-grid{grid-template-columns:1fr}.field.wide,.detail-grid .wide{grid-column:auto}.schedule-box{grid-column:auto}.schedule-fields{grid-template-columns:1fr 1fr}.schedule-fields .field:first-child{grid-column:1/-1}.dialog-head,.dialog-body,.dialog-foot{padding:16px}.dialog-head h2{font-size:17px}.dialog-foot{align-items:flex-start}.dialog-foot .actions{flex-shrink:0}.config label{width:100%;justify-content:space-between}.config label input{max-width:180px}.actions button{font-size:12px;padding:9px 11px}.owner-band{padding-left:10px}.chips{gap:4px}.chip{font-size:10px}}
+</style>
+</head>
+<body>
+<main class="shell">
+<header class="top"><div><p class="eyebrow">CAMPUS × INDUSTRY · OPERATIONS</p><h1>企业参访 · SOP 执行台</h1><p class="sub">以交付推进每一程。把排期、分工与验收放在同一张工作台。</p></div><div class="top-right"><div class="actions"><button id="importBtn">导入 JSON</button><button id="exportBtn" class="primary">导出 JSON</button><button id="markdownBtn">导出任务 Markdown</button></div><div class="actions"><button id="undoBtn" class="quiet" disabled>撤销修改</button><button id="helpBtn" class="quiet">使用说明</button></div><span id="saveState" class="save-state" role="status">正在读取本地记录…</span></div></header>
+<div class="storage-note">编辑内容自动保存在当前浏览器。请定期导出 JSON 备份或交接；浏览器不会直接回写 <strong>SOP.md</strong>。页面完全离线可用。</div>
+<section class="config" aria-label="活动设置"><label>参访日 T <input id="eventDate" type="date" aria-label="参访日期"></label><label>出发时刻 h <input id="departureTime" type="time" aria-label="出发时刻"></label><small id="configHint">可选填写实际日期；所有任务仍按 T / h 表示。</small></section>
+<section class="metrics" aria-label="任务概览"><div class="metric"><span>全部任务</span><b id="totalMetric">35</b></div><div class="metric good"><span>已完成 / 已验收</span><b id="doneMetric">0</b></div><div class="metric"><span>执行中 / 待验收</span><b id="activeMetric">0</b></div><div class="metric"><span>受阻 · 需要协调</span><b id="blockedMetric">0</b></div></section>
+<div class="toolbar"><div class="toolbar-row"><div class="tabs" role="tablist" aria-label="视图"><button id="ganttTab" role="tab" aria-selected="true" aria-controls="ganttView">分工甘特图</button><button id="listTab" role="tab" aria-selected="false" aria-controls="listView">SOP 任务速查</button></div><span id="resultCount" class="chip"></span></div><div class="filters"><label class="filter-label">搜索任务<input id="search" class="search" type="search" placeholder="搜索编号、任务、内容、执行人…"></label><label class="filter-label">负责人<select id="ownerFilter"><option value="">全部岗位</option></select></label><label class="filter-label">活动阶段<select id="phaseFilter"><option value="">全部阶段</option><option value="prep">筹备期 · T 日前</option><option value="event">活动当天 · h 小时</option><option value="post">活动后 · T 起</option><option value="none">待排期</option></select></label><label class="filter-label">任务状态<select id="statusFilter"><option value="">全部状态</option></select></label><button class="reset-filter quiet" id="clearFilters">清空筛选</button></div></div>
+<section id="ganttView" role="tabpanel" aria-labelledby="ganttTab"><div class="view-head"><div><h2>三段时间轴，八个责任岗位</h2><p>点击任务查看详情；拖动条身移动排期，拖动两端调整区间。日级按 1 天、小时级按 0.25 小时吸附。手机可横向滚动。</p></div><div class="chips"><span class="chip">T 轴：含截止日</span><span class="chip">h 轴：精确到时刻</span><span class="chip">原始编号固定</span></div></div><div id="ganttContent"></div></section>
+<section id="listView" role="tabpanel" aria-labelledby="listTab" hidden><div class="view-head"><div><h2>按负责人查找与交接</h2><p>点击任务展开详情，选择“编辑此任务”修改所有执行字段；保存后甘特图与本清单同步更新。</p></div><span class="chip">上游依赖 ⇄ 下游交付自动互补</span></div><div id="listContent"></div></section>
+<details class="health" id="healthPanel"><summary id="healthSummary"></summary><div class="health-content" id="healthContent"></div></details>
+<footer class="footer">数据基于同目录 SOP.md 的 2026-11-16 快照（35 项任务 / 80 条依赖），读取任务清单原文。<button id="sourceBtn" class="quiet" style="padding:2px 6px;font-size:11px">查看原文快照</button><br>任务表在原文第四节，甘特图说明在第三节，管理机制在第六节。本页面以任务清单为准；编辑不会自动读取日后修改的 SOP.md。<span id="sourceHash"></span></footer>
+</main>
+<dialog id="editor" aria-labelledby="editHeading"><div class="dialog-head"><div><h2 id="editHeading">编辑任务</h2><p id="originalTime"></p></div><button id="closeEditor" aria-label="关闭任务详情">✕</button></div><form id="editForm" novalidate><div class="dialog-body"><div class="notice" id="taskNotice" hidden></div><div class="form-grid"><label class="field">负责人岗位<input name="owner" list="ownerOptions" maxlength="40" required></label><label class="field">实际执行人<input name="executor" maxlength="100" placeholder="姓名 / 联系方式（自行管理权限）"></label><label class="field wide">任务标题<input name="title" maxlength="150" required></label><div class="schedule-box"><strong style="font-size:12px">排期与时间要求</strong><div class="schedule-fields"><label class="field">时间粒度<select name="unit"><option value="day">按日 · T±天</option><option value="hour">当天 · h±小时</option><option value="none">待排期 / 不限时</option></select></label><label class="field"><span id="startLabel">开始日偏移</span><input name="start" type="number" step="1" required></label><label class="field"><span id="endLabel">截止日偏移（含当天）</span><input name="end" type="number" step="1" required></label></div><div class="hint" id="scheduleHint"></div><div class="unit-prefix" id="timePreview"></div><label class="field" style="margin-top:12px">补充时间要求<input name="timeNote" maxlength="1000" placeholder="如：当天先移交报名数据，再开始筛选"></label></div><label class="field wide">具体执行内容<textarea name="content" rows="3" required></textarea></label><label class="field wide">交付标准<textarea name="acceptance" rows="3" required></textarea></label><label class="field wide">上游依赖 · 编号 + 任务名 + 交接备注<textarea name="upstream" rows="3"></textarea><span class="hint">多项用“；”分隔；保留括号中的阶段交付说明。填写编号会自动补齐任务名。删除或新增依赖时，对方的下游交付会同步更新。</span></label><label class="field wide">下游交付 · 编号 + 任务名 + 交接备注<textarea name="downstream" rows="3"></textarea><span class="hint">支持“项目归档/结案”等文字交付。新增或删除任务编号会同步对方上游依赖；禁止自依赖、未知编号与依赖环。</span></label><label class="field">任务状态<select name="status"></select></label><label class="field">验收结果<select name="reviewResult"><option>待验收</option><option>通过</option><option>需整改</option></select></label><label class="field">验收人<input name="reviewer" maxlength="100"></label><label class="field">交付材料链接 / 路径<input name="materials" maxlength="3000" placeholder="材料链接、共享目录或存储位置"></label><label class="field wide">执行备注<textarea name="notes" rows="2" placeholder="记录进展、阻碍、验收记录与待办"></textarea></label></div></div><div class="dialog-foot"><div id="formState" class="form-state" role="status">有效修改会自动保存</div><div class="actions"><button type="button" id="resetTask" class="quiet danger">还原此任务</button><button type="submit" class="primary">保存并关闭</button></div></div></form></dialog>
+<datalist id="ownerOptions"></datalist><input type="file" id="jsonFile" accept=".json,application/json" hidden>
+<dialog id="helpDialog" aria-labelledby="helpHeading"><div class="dialog-head"><h2 id="helpHeading">使用与保存说明</h2><button data-close="helpDialog" aria-label="关闭说明">✕</button></div><div class="dialog-body help-content"><h3>01 · 一份任务数据，两个视图</h3><p>甘特图和速查读取同一份任务清单；筛选条件也在两个视图间共用。点击任务条或任务行可打开编辑器。有效字段停止输入约半秒后保存，非法排期或依赖会提示修正，原有有效数据保留。“保存并关闭”会立即校验并提交。</p><h3>02 · T 与 h 分别表示什么</h3><p>T 是参访日，T−3 是提前三天。日级开始日与截止日均包含当天，T−5～T−5 表示一天；底层保存为 [−5, −4) 区间，实际开始早于结束。h 是当天出发时刻，h−0.5 是出发前 30 分钟，h+1 是出发后 1 小时；小时级结束必须严格晚于开始。拖动按 1 天或 15 分钟吸附；编辑框可填写更精细的小时偏移。时间粒度切换时请重新填写起止值，页面不会把天数换成小时数。跨越 T 的日级任务会分别出现在筹备和活动后日轴。</p><p>任务标题完整显示在左栏，条内空间有限时省略显示，可悬停或点击查看。双击小时轴任务以外的日期不会改变排期；条身和两端支持拖动，键盘用户可聚焦任务条后按 Enter 打开编辑。</p><h3>03 · 本地自动保存与备份</h3><p>编辑自动存入当前浏览器的 localStorage。关闭后用同一浏览器、同一路径重新打开即可恢复。换浏览器、换文件路径、无痕浏览或清理浏览数据可能导致记录不可用；localStorage 不支持团队实时协作。上方保存状态会明确提示存储是否成功。请定期导出 JSON，在其他设备通过导入继续执行。多窗口编辑时会提示外部变更，避免静默覆盖。</p><p>JSON 包含全部字段、相对排期和原文快照。导入时先校验，展示差异数量，再由你确认替换当前任务；导入前会尝试下载当前备份。非法文件不会替换现有任务。可撤销本次会话最近 30 次有效修改。导出 Markdown 生成独立的当前任务清单，包含全部执行与验收字段、源文件校验值；<strong>不会直接修改或替换 SOP.md，也不自动重写原文的关键时间节点。</strong></p><h3>04 · 依赖与验收</h3><p>上游、下游中的任务编号形成依赖图，两侧引用自动互补；括号备注保留。未知编号、自依赖、环路和双方引用不一致会阻止保存或导入。原文允许并行准备、同日交接、阶段性交付，页面只把时间重叠列为待核对提醒。标记“已完成”需要验收结果“通过”且所有上游任务已完成；如状态发生调整，依赖检查会提示受影响的已完成任务。</p><h3>05 · 原文差异与数据范围</h3><p>Z01 在任务表中为 T−21，其他段落写“启动不限时”；本页面初始按任务表排期。可在编辑中改为“待排期 / 不限时”。活动后日轴从 T 开始，P03、P04、R03 保留原文 T 起安排；h 轴单独表示现场时刻。原始 35 个编号固定，导入文件必须包含全部编号。原文后来有修改时，请重新核对并更新页面数据；页面不会自行读取源文件的新版本。</p><p>任务可能包含报名、照片及企业材料，请按学校要求管理备份与共享权限。</p></div></dialog>
+<dialog id="sourceDialog" aria-labelledby="sourceHeading"><div class="dialog-head"><h2 id="sourceHeading">SOP.md 原文快照（只读）</h2><button data-close="sourceDialog" aria-label="关闭原文">✕</button></div><div class="dialog-body"><pre class="source-text" id="sourceText"></pre></div></dialog>
+<div class="toast" id="toast" role="status" hidden></div><div id="dragTip" hidden></div>
+<script id="seedData" type="application/json">{
+  "schemaVersion": 1,
+  "source": {
+    "path": "/Users/apple/projects/enterprise_visit/SOP.md",
+    "sha256": "96fe4c09e56c246457cd1b6dd3db8677d764c9f73339ee450aa3d1968ee5fe51",
+    "snapshotDate": "2026-11-16",
+    "markdown": "# 企业参访活动标准化流程（SOP）V1.0\n\n适用场景： 大学校园组织的企业参访活动\\\n管理方式： 按负责人分工、按时间节点推进、按交付标准验收\\\n建议筹备周期： 任务启动不限时，自T−21起组织筹备，活动后7天完成全部收尾\n\n在原有流程基础上，建议建立一套 “8个责任岗位 + 3阶段甘特图 + 35项标准任务 + 交付验收机制” 的执行体系。\n\n## 一、时间定义与编排规则\n\n| 符号  | 含义                 | 示例            |\n| --- | ------------------ | ------------- |\n| T   | 企业参访当天             | T             |\n| T−n | 参访前第n天             | T−7：提前7天      |\n| T+n | 参访后第n天             | T+3：活动后第3天    |\n| h   | 参访当天，从学校集合点正式出发的时刻 | h             |\n| h−n | 出发前n小时             | h−1.5：出发前90分钟 |\n| h+n | 出发后n小时             | h+4：出发后4小时    |\n\n为了让甘特图能够直接执行，暂按以下典型活动安排建模：\n\n- 去程1小时：h 至 h+1\n- 企业参访3小时：h+1 至 h+4\n- 返程1小时：h+4 至 h+5\n- 返程清点与收尾预留0.5小时：至 h+5.5\n\n特别约定： 甘特图中，T±n任务按日安排，截止日视为当日结束；参访当天的 h±n 则表示精确时间节点。\n\n所有起止时间均为建议基准，可根据企业实际接待安排调整。\n\n## 二、按负责人划分任务\n\n| 负责人 | 核心职责              | 最重要的交付成果         |\n| --- | ----------------- | ---------------- |\n| 总协调 | 任务启动、招募组织、进度统筹、企业承诺把关、应急、复盘汇报 | 项目目标与预算、总排期、风险预案、验收记录、复盘汇报 |\n| 外联  | 企业需求、接待流程、临场沟通    | 企业确认单、接待流程、感谢信   |\n| 宣传  | 活动招募、回顾宣传、反馈收集    | 招募推送、报名表、回顾推送    |\n| 匹配  | 申请筛选、名单确认、参与者沟通   | 正式名单、候补名单、活动群    |\n| 后勤  | 交通、物资、现场支持、票据     | 车辆确认单、物资清单、费用凭证  |\n| 领队  | 签到、纪律、安全及全程带队     | 签到表、分组名单、人员清点记录  |\n| 摄影  | 关键环节拍摄、素材交付       | 可用照片、素材包         |\n| 记录  | 企业分享、问答内容及知识沉淀    | 企业分享纪要、Q&A资料     |\n\n建议各岗位均指定一位主负责人；同一人可以兼任多个岗位，负责人也可以招募组员共同完成工作，但每个任务只能有一个最终交付责任人。\n\n## 三、甘特图式时间表\n\n按照执行逻辑拆分为三张时间轴：筹备期、参访当天、活动后。任务条内标注任务名称，左右端对应开始和截止时间；每行右侧同时列出精确的时间表达式，方便核对。\n\n时间表有四个关键衔接点：\n\n1. T−15：企业接待流程定稿；T−14完成企业承诺审核，T−13前完成招募推文企业审核，T−12起发布。\n2. T−5：报名截止并完成资格筛选；T−4前按已确认人数及候补上限锁定车辆容量，T−3前完成录取、递补和群组建立。\n3. T−3：风险预案完成，随后召开行前检查会，T−1前关闭所有关键待办。\n4. T+2：照片、记录纪要及反馈分析交付；T+4完成回顾宣传，T+5～T+6组织团队复盘并向部长汇报，T+7完成结案。\n\n## 四、按负责人整理的任务执行清单\n\n以下为甘特图中35项任务的具体执行规范。任务编号用于团队派工、进度跟踪和验收；外部时间表及相关引用沿用本清单编号。\n\n依赖按交付内容衔接：可并行任务先开展准备，相关上游成果验收后再完成对应环节；表内注明的阶段性交付按指定时间交接。未特别注明的依赖以完整交付为准。“下游交付”列列出接收本任务成果的任务。新增招募组织使用Z08，保留Z02—Z07原编号。\n\n车辆与名单采用分阶段核对：L02 车辆最终锁定在T−6开始询单落实，M02 确认名单建群于T−4前提供已确认人数及候补上限，L02 车辆最终锁定据此于T−4前锁定足额座位；T−3名单定稿后，由W03 企业行前复核与D01 签到与编组准备核对车辆容量、乘车名单，人数超出已锁定容量时先解决运力再通过行前验收。L03 物资采购准备于T−2前备齐签到用纸等物料，D01 签到与编组准备于T−1前完成最终名单版本。\n\n### 1. 总协调｜8项任务\n\n| 任务 | 时间要求 | 具体执行内容 | 交付标准 | 上游依赖 | 下游交付 |\n| ---------- | -------------- | ------------------------------ | --------------------------------- | --- | --- |\n| Z01 任务启动 | T-21 | 确定参访目标、初步预算，联络企业确认可行性及大致时间 | 参访目标、初步预算、企业可行性及大致时间形成记录，具备组织筹备条件 | 无 | Z08 招募组织；W01 企业要素确认 |\n| Z08 招募组织 | T−21～T−17 | 招募项目参与者，指定岗位负责人、项目时间点与分工 | 《项目分工与总排期表》完成，所有负责人确认职责及项目时间点 | Z01 任务启动 | W02 接待流程定稿；L01 车辆询价预留；L03 物资采购准备 |\n| Z02 企业承诺审核 | T−17～T−14 | 与外联共同核验企业接待规格、流程、分享内容与实际可兑现程度 | 《企业接待确认单》经企业及总协调确认，不存在未经确认的宣传承诺 | W01 企业要素确认；W02 接待流程定稿（流程草案可先审，定稿后完成最终确认） | P01 宣传报名准备 |\n| Z03 风险预案 | T−5～T−3 | 制定企业临时变更、学生迟到、大巴故障、突发身体不适等应急方案 | T−3前完成《参访风险预案》及应急联络表，明确处置负责人和备用方案 | W01 企业要素确认；W02 接待流程定稿；L01 车辆询价预留 | Z04 行前检查会；M03 行前通知确认 |\n| Z04 行前检查会 | T−2～T−1 | 召集各组，核验人数、交通、物资、企业安排、人员分工及现场流程 | 形成《行前检查表》；关键事项全部确认，未完成事项有责任人与截止时间 | Z03 风险预案；W03 企业行前复核（阶段结果先核验，T−1闭环）；M03 行前通知确认（阶段结果先核验，T−1闭环）；L02 车辆最终锁定；L03 物资采购准备；D01 签到与编组准备（阶段结果先核验，T−1闭环）；F01 拍摄清单确认（阶段结果先核验，T−1闭环）；R01 记录提纲准备（阶段结果先核验，T−1闭环） | Z05 现场统筹应急；W04 企业现场对接；L04 装车点检；D02 集合签到宣讲；F02 参访现场摄影；R02 分享问答记录 |\n| Z05 现场统筹应急 | T日 h−1.5～h+5.5 | 监督执行进度、协调企业与车队、处理现场变化及人员异常情况 | 关键节点人员核对无遗漏；重大变化有处置记录和及时通知 | Z04 行前检查会 | Z06 组织团队复盘；Z07 财务结算归档 |\n| Z06 组织团队复盘 | T+5～T+6 | 汇总参与者反馈，组织各组复盘执行问题与优化建议，并向部长汇报活动结果、主要问题及改进措施 | 《活动复盘纪要》完成，每项改进措施均有负责人和落实期限；已向部长汇报并留存汇报材料及反馈记录 | Z05 现场统筹应急；D03 全程带队清点；W05 企业致谢回访；P03 活动回顾发布；P04 收集分析反馈 | Z07 财务结算归档 |\n| Z07 财务结算归档 | T+2～T+7 | 核实交通、物资等支出，处理报销，归档财务及项目材料 | 《活动费用结算表》与票据完整，预算差异可解释，报销审批完成 | Z05 现场统筹应急（现场异常记录纳入归档）；Z06 组织团队复盘（先核账，T+6复盘汇报完成后汇入结案资料）；L06 票据物资收尾；P03 活动回顾发布（可先核账，T+4发布后归档回顾材料）；F03 选片整理交付；R03 纪要整理归档 | 项目归档/结案 |\n\n### 2. 外联｜5项任务\n\n| 任务 | 时间要求 | 具体执行内容 | 交付标准 | 上游依赖 | 下游交付 |\n| ---------- | ---------------- | ---------------------------------- | -------------------------- | --- | --- |\n| W01 企业要素确认 | T−21～T−17 | 确认参访日期、时长、人数上限、参访路线及对学生专业、年级、技能等要求 | 《企业需求确认单》形成，核心事项取得企业书面确认 | Z01 任务启动 | Z02 企业承诺审核；Z03 风险预案；W02 接待流程定稿；M01 资格筛选；L01 车辆询价预留；L03 物资采购准备 |\n| W02 接待流程定稿 | T−17～T−15 | 确定企业分享嘉宾、宣讲主题、互动环节、伴手礼需求、摄影限制等 | 《企业参访流程表》明确各环节时间、内容、对接人 | Z08 招募组织；W01 企业要素确认 | Z02 企业承诺审核；Z03 风险预案；P01 宣传报名准备；L03 物资采购准备；F01 拍摄清单确认；R01 记录提纲准备 |\n| W03 企业行前复核 | T−3～T−1 | 向企业同步最终人数、预计抵达时间、交通信息、具体接待地点 | 获得企业最终确认，现场联系人及应急联系方式可用 | M02 确认名单建群（T−3名单确认后同步企业）；L02 车辆最终锁定 | Z04 行前检查会；W04 企业现场对接；M03 行前通知确认；F01 拍摄清单确认；R01 记录提纲准备 |\n| W04 企业现场对接 | T日 h+0.75～h+4.25 | 对接企业接待人员，配合议程推进，及时反馈临场变更 | 接待环节按确认流程完成，任何临时调整均及时同步总协调 | W03 企业行前复核；Z04 行前检查会 | W05 企业致谢回访 |\n| W05 企业致谢回访 | T+1～T+3 | 发送感谢信，反馈活动情况、同学收获及可分享的影像素材 | 感谢信发送完成，形成《企业回访记录》 | W04 企业现场对接；F03 选片整理交付（可先致谢，T+2素材交付后于T+3前完成回访）；R03 纪要整理归档（T+2纪要交付后补充同学收获） | Z06 组织团队复盘 |\n\n### 3. 宣传｜4项任务\n\n| 任务 | 时间要求 | 具体执行内容 | 交付标准 | 上游依赖 | 下游交付 |\n| ---------- | --------- | ------------------------------- | ---------------------------------- | --- | --- |\n| P01 宣传报名准备 | T−15～T−13 | 撰写招募推文，介绍企业、活动亮点、报名要求；建立报名问卷；准备期间将推文初稿提交企业审核，获批准后方可发布 | T−13前推文初稿获企业批准并留存审核记录；推文及问卷经内部审核，时间、地点、条件准确，报名链接可正常使用 | W02 接待流程定稿；Z02 企业承诺审核（先起草，承诺审核通过后完成企业审核） | P02 招募发布与报名管理 |\n| P02 招募发布与报名管理 | T−12～T−5 | 正式发布经企业批准的推送、组织渠道转发并维护报名数据 | T−5结束报名，导出完整报名信息并在当日筛选前移交匹配组 | P01 宣传报名准备 | M01 资格筛选 |\n| P03 活动回顾发布 | T～T+4 | 接收摄影、记录素材，撰写回顾推文，核实企业介绍、引用及照片授权 | T+4当日结束前发布活动回顾，覆盖核心环节、照片清晰、内容准确且无未授权素材 | F03 选片整理交付（T日起先搭框架，T+2接收素材后定稿）；R03 纪要整理归档（T日起先搭框架，T+2接收纪要后定稿） | Z06 组织团队复盘；Z07 财务结算归档 |\n| P04 收集分析反馈 | T～T+2 | 发放反馈问卷，整理参访体验、企业分享评价及改进建议 | 《反馈分析表》完成，记录回收数量、主要评价与改进意见 | D03 全程带队清点（T日参访结束后收集反馈） | Z06 组织团队复盘 |\n\n### 4. 匹配｜3项任务\n\n| 任务 | 时间要求 | 具体执行内容 | 交付标准 | 上游依赖 | 下游交付 |\n| ---------- | ------- | ------------------------------------- | ---------------------------- | --- | --- |\n| M01 资格筛选 | T−5 | 根据企业标准筛选申请者，整理符合条件者及候补名单 | 《初筛名单及候补名单》完成，筛选规则统一、结果可追溯 | P02 招募发布与报名管理；W01 企业要素确认 | M02 确认名单建群 |\n| M02 确认名单建群 | T−5～T−3 | 通知入选者、核实参加意愿、替补空缺名额，建立活动微信群 | 正式参加人数不超过企业上限，名单确认状态清晰，微信群建立 | M01 资格筛选 | W03 企业行前复核；M03 行前通知确认；L02 车辆最终锁定；L03 物资采购准备；D01 签到与编组准备 |\n| M03 行前通知确认 | T−2～T−1 | 发布集合地点与时间、着装、活动纪律、迟到规则及应急联系人；二次确认出席情况 | T−1前形成最终确认名单，并同步给领队、后勤和总协调 | M02 确认名单建群；W03 企业行前复核（按复核进度更新，T−1完成最终通知）；L02 车辆最终锁定；Z03 风险预案 | Z04 行前检查会；D01 签到与编组准备 |\n\n### 5. 后勤｜6项任务\n\n| 任务 | 时间要求 | 具体执行内容 | 交付标准 | 上游依赖 | 下游交付 |\n| ---------- | -------------- | ----------------------------- | ---------------------------- | --- | --- |\n| L01 车辆询价预留 | T−12～T−8 | 根据预估人数，联系车队、核实车辆资质、费用、路线和座位数 | 《车辆预订方案》完成，车辆容量满足预计需求，预算可控 | Z08 招募组织；W01 企业要素确认 | Z03 风险预案；L02 车辆最终锁定 |\n| L02 车辆最终锁定 | T−6～T−4 | 根据最终人数落实车辆、司机、发车点、返程安排和应急替代方案 | 《车辆确认单》包括车牌、司机联系方式、座位数、时间及费用；完成车辆入校报备 | L01 车辆询价预留；M02 确认名单建群（T−4前交付已确认人数及候补上限，T−3最终名单再核对） | Z04 行前检查会；W03 企业行前复核；M03 行前通知确认；L04 装车点检；D01 签到与编组准备 |\n| L03 物资采购准备 | T−7～T−2 | 准备伴手礼、签到表、饮用水、横幅、扩音设备、应急药品等 | 《物资清单》完成，各项数量满足需求，重要设备测试可用 | Z08 招募组织；W01 企业要素确认；W02 接待流程定稿；M02 确认名单建群（先按人数上限备料，T−3名单确认后于T−2前核对数量） | Z04 行前检查会；L04 装车点检 |\n| L04 装车点检 | T日 h−1～h−0.5 | 检查车辆及全部现场物资，确认礼品、水、签到表等已经装车 | 《装车点检单》逐项核对，关键物资无缺漏 | L02 车辆最终锁定；L03 物资采购准备；D01 签到与编组准备；Z04 行前检查会 | L05 物资分发回收；D02 集合签到宣讲 |\n| L05 物资分发回收 | T日 h+1～h+5.5 | 协助现场物资分发、伴手礼交换、活动结束清点和回收 | 《物资回收清单》完成，借用设备与剩余物资有明确去向 | L04 装车点检 | L06 票据物资收尾 |\n| L06 票据物资收尾 | T+1～T+2 | 汇总采购及交通票据，办理借用物资归还，移交费用明细 | 票据包、费用明细、物资归还记录完整并提交总协调 | L05 物资分发回收 | Z07 财务结算归档 |\n\n### 6. 领队｜3项任务\n\n| 任务 | 时间要求 | 具体执行内容 | 交付标准 | 上游依赖 | 下游交付 |\n| ----------- | ---------- | -------------------------------- | ------------------------------ | --- | --- |\n| D01 签到与编组准备 | T−3～T−1 | 制作签到表，安排学生分组或乘车座位，明确签到、清点和迟到处理办法 | 《签到表》《分组名单》准备完成，与最终名单一致 | M02 确认名单建群；M03 行前通知确认（先按录取名单制表，T−1按最终出席确认更新）；L02 车辆最终锁定 | Z04 行前检查会；L04 装车点检；D02 集合签到宣讲 |\n| D02 集合签到宣讲 | T日 h−0.5～h | 提前到达集合点，组织签到、核对人数，说明纪律、安全要求和当天流程 | 出发前确认实到人员及未到人员去向，上车人数与实际签到人数一致 | D01 签到与编组准备；Z04 行前检查会；L04 装车点检 | D03 全程带队清点 |\n| D03 全程带队清点 | T日 h～h+5.5 | 组织去程、企业入场、参访、离场及返程；各节点进行人员清点 | 出发、到达企业、离开企业、返校各节点人数核对完成，无人员遗漏 | D02 集合签到宣讲 | Z06 组织团队复盘；P04 收集分析反馈 |\n\n### 7. 摄影｜3项任务\n\n| 任务 | 时间要求 | 具体执行内容 | 交付标准 | 上游依赖 | 下游交付 |\n| ---------- | --------------- | ---------------------------- | ------------------------------ | --- | --- |\n| F01 拍摄清单确认 | T−2～T−1 | 确认拍摄设备、核心场景、合影时间、企业禁拍区域及必要授权 | 《拍摄清单》完成，关键拍摄点和拍摄限制已明确 | W02 接待流程定稿；W03 企业行前复核（禁拍及授权信息随复核更新，T−1确认） | Z04 行前检查会；F02 参访现场摄影 |\n| F02 参访现场摄影 | T日 h−0.5～h+4.25 | 记录出发、企业参观、宣讲、互动交流、集体合照等关键场景 | 各核心环节均有清晰可用照片 | F01 拍摄清单确认；Z04 行前检查会 | F03 选片整理交付 |\n| F03 选片整理交付 | T+1～T+2 | 备份原片、筛选可用于宣传的照片，按环节分类整理，必要时修图 | 《活动照片素材包》及授权使用说明提交宣传组，重点环节照片齐全，无违反企业或参与者拍摄限制的素材 | F02 参访现场摄影 | Z07 财务结算归档；W05 企业致谢回访；P03 活动回顾发布 |\n\n### 8. 记录｜3项任务\n\n| 任务 | 时间要求 | 具体执行内容 | 交付标准 | 上游依赖 | 下游交付 |\n| ---------- | ------------- | -------------------------- | ------------------------------ | --- | --- |\n| R01 记录提纲准备 | T−2～T−1 | 根据企业议程准备记录模板、重点问题及录音安排 | 《记录提纲》完成，录音许可及保密要求已确认 | W02 接待流程定稿；W03 企业行前复核（录音及保密要求随复核更新，T−1确认） | Z04 行前检查会；R02 分享问答记录 |\n| R02 分享问答记录 | T日 h+1～h+4.25 | 记录企业分享的重要观点、嘉宾发言、学生提问及企业答复 | 《现场记录》涵盖分享要点和主要Q&A，标明发言人及需核实内容 | R01 记录提纲准备；Z04 行前检查会 | R03 纪要整理归档 |\n| R03 纪要整理归档 | T～T+2 | 整理企业分享干货、问答内容，核对事实及可公开引用范围 | 《企业分享纪要》《问答纪要》完成归档，并于T+2前提供给宣传组 | R02 分享问答记录 | Z07 财务结算归档；W05 企业致谢回访；P03 活动回顾发布 |\n\n## 五、关键时间节点与验收机制\n\n以下节点以第四节现有任务时间为准。各任务最终交付责任人提交成果，由表中岗位核验并记录材料链接、验收结果；总协调跟进跨岗位问题。截止日按当日结束计算，同日交接按“上游交付、下游验收、继续执行”的顺序完成。\n\n| 验收节点 | 验收事项及关联任务 | 验收负责人 | 通过条件 |\n| --- | --- | --- | --- |\n| 不限时；进入正式筹备前 | Z01 任务启动 | 总协调 | 参访目标、初步预算、企业可行性及大致时间已有记录，具备组织筹备条件 |\n| T−17 | Z08 招募组织；W01 企业要素确认 | 总协调、外联 | 项目参与者及岗位负责人到位，分工、时间点已确认；企业日期、人数上限及学生要求取得书面确认 |\n| T−15、T−14 | W02 接待流程定稿；Z02 企业承诺审核 | 总协调、外联 | T−15前完成流程表；T−14前完成接待规格、分享内容及承诺核验，宣传可引用的内容已明确 |\n| T−13；T−12发布前 | P01 宣传报名准备；P02 招募发布与报名管理 | 宣传、外联 | T−13前推文初稿获企业批准并留存记录，问卷及链接通过内部审核；T−12起使用获批版本发布、转发并管理报名数据 |\n| T−8 | L01 车辆询价预留 | 后勤、总协调 | 车辆资质、费用、路线、容量及预留方案明确，预算可控 |\n| T−5（当日顺序交接） | P02 招募发布与报名管理；M01 资格筛选 | 宣传、匹配 | 先截止报名并移交完整数据，再按企业标准完成初筛及候补名单；提前向报名者明确当日截止时刻，为筛选留出时间 |\n| T−4 | L02 车辆最终锁定；M02 确认名单建群（阶段交付） | 后勤、匹配 | 匹配交付已确认人数及候补上限；车辆按该容量锁定，司机、车牌、时间、费用、返程及备用方案明确，入校报备完成 |\n| T−3 | M02 确认名单建群；Z03 风险预案 | 匹配、总协调 | 录取、递补及建群完成，正式人数不超企业上限且车辆容量足够；风险预案、应急联系人和备用方案齐备，名单同步外联、领队及后勤 |\n| T−2 | L03 物资采购准备 | 后勤 | 礼品、饮用水、签到用纸等物资备齐，数量满足需求，重要设备测试可用；待T−1名单确认后补齐最终签到表 |\n| T−1 | Z04 行前检查会；W03 企业行前复核；M03 行前通知确认；D01 签到与编组准备；F01 拍摄清单确认；R01 记录提纲准备 | 总协调牵头，各岗位核验 | 企业最终确认、最终出席名单、车辆容量、物资、签到编组、行前通知、拍摄及录音许可全部闭环；关键未完成项须处理并复验后方可出发 |\n| T日 h−0.5 | L04 装车点检；D02 集合签到宣讲（开始） | 后勤、领队 | 车辆及物资点检完成，最终签到表到位，集合签到条件齐备，开始核对实到人员 |\n| T日 h（出发前） | D02 集合签到宣讲；D03 全程带队清点（开始） | 领队、总协调 | 签到、纪律及安全宣讲完成，未到人员去向明确，上车人数与签到记录一致；随后按到达企业、离开企业、返校各节点清点 |\n| T日 h+5.5 | D03 全程带队清点；Z05 现场统筹应急；L05 物资分发回收 | 领队、总协调、后勤 | 人员安全返回，借用设备及剩余物资去向明确，异常事件处置记录完整 |\n| T+2 | F03 选片整理交付；R03 纪要整理归档；P04 收集分析反馈；L06 票据物资收尾 | 宣传、总协调 | 宣传收到照片、授权说明及纪要；反馈分析表完成；总协调收到票据、费用明细及归还记录，Z07 财务结算归档可据此核账 |\n| T+3 | W05 企业致谢回访 | 外联、总协调 | 感谢信、可分享素材及活动情况已反馈企业，回访记录完成 |\n| T+4 | P03 活动回顾发布 | 宣传 | 回顾已发布，核心环节齐全，事实、引用及照片授权核实完成 |\n| T+6 | Z06 组织团队复盘 | 总协调 | T+5～T+6完成团队复盘，改进措施有负责人及期限；向部长汇报完成，汇报材料及反馈已留存 |\n| T+7 | Z07 财务结算归档 | 总协调 | 报销审批完成、费用与票据一致、预算差异有说明；回顾、企业回访、复盘及部长汇报材料完整归档，项目结案 |\n\n执行中按上述关口记录验收结果；发现排期变动时，由总协调同步任务负责人、接收成果的下游岗位及外部时间表。并行任务可先开展已具备条件的部分，关键成果在使用前完成验收。\n\n## 六、建议配套的SOP管理机制\n\n为了让后续接任同学不需要依赖前任的口头指导，建议为每个任务额外记录 实际执行人、执行状态、交付材料链接、验收人、验收结果 五项信息。\n\n示例：任务 Z03｜风险预案\n\n负责人：总协调　截止：T−3\n\n未开始\n\n尚未开始执行，负责人需确认预计开始时间。\n\n另外有三条特别重要的执行规则：\n\n- 上游未验收，下游不得默认完成。 例如企业接待方案尚未确认，宣传就不能将不确定的接待内容写成已确定安排。\n- 进度发生变化，必须同步受影响的岗位。 例如参加人数增加，会同时影响后勤车辆、领队名单、企业接待及物资采购。\n- 报名和活动素材须有权限管理。 学生联系方式、简历、照片及企业非公开信息，只允许有工作需要的成员访问；归档与删除按照学校相关要求执行。\n\n这版 SOP 的核心是把活动管理转化为一条可以交接、跟踪、验收的任务链：\n\n外联确认 → 宣传招募 → 匹配筛选 → 后勤落实 → 行前验收 → 现场执行 → 素材归档 → 宣传复盘 → 财务结案。\n\n后续只需替换 T 对应的实际日期、h 对应的出发时间、企业接待时长和各岗位执行人，就可以作为新一届活动团队的标准化执行底稿。\n"
+  },
+  "settings": {
+    "eventDate": "",
+    "departureTime": "09:00"
+  },
+  "tasks": [
+    {
+      "id": "Z01",
+      "title": "任务启动",
+      "owner": "总协调",
+      "content": "确定参访目标、初步预算，联络企业确认可行性及大致时间",
+      "acceptance": "参访目标、初步预算、企业可行性及大致时间形成记录，具备组织筹备条件",
+      "upstream": "无",
+      "downstream": "Z08 招募组织；W01 企业要素确认",
+      "originalTime": "T-21",
+      "schedule": {
+        "unit": "day",
+        "start": -21,
+        "end": -20
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "Z08",
+      "title": "招募组织",
+      "owner": "总协调",
+      "content": "招募项目参与者，指定岗位负责人、项目时间点与分工",
+      "acceptance": "《项目分工与总排期表》完成，所有负责人确认职责及项目时间点",
+      "upstream": "Z01 任务启动",
+      "downstream": "W02 接待流程定稿；L01 车辆询价预留；L03 物资采购准备",
+      "originalTime": "T−21～T−17",
+      "schedule": {
+        "unit": "day",
+        "start": -21,
+        "end": -16
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "Z02",
+      "title": "企业承诺审核",
+      "owner": "总协调",
+      "content": "与外联共同核验企业接待规格、流程、分享内容与实际可兑现程度",
+      "acceptance": "《企业接待确认单》经企业及总协调确认，不存在未经确认的宣传承诺",
+      "upstream": "W01 企业要素确认；W02 接待流程定稿（流程草案可先审，定稿后完成最终确认）",
+      "downstream": "P01 宣传报名准备",
+      "originalTime": "T−17～T−14",
+      "schedule": {
+        "unit": "day",
+        "start": -17,
+        "end": -13
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "Z03",
+      "title": "风险预案",
+      "owner": "总协调",
+      "content": "制定企业临时变更、学生迟到、大巴故障、突发身体不适等应急方案",
+      "acceptance": "T−3前完成《参访风险预案》及应急联络表，明确处置负责人和备用方案",
+      "upstream": "W01 企业要素确认；W02 接待流程定稿；L01 车辆询价预留",
+      "downstream": "Z04 行前检查会；M03 行前通知确认",
+      "originalTime": "T−5～T−3",
+      "schedule": {
+        "unit": "day",
+        "start": -5,
+        "end": -2
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "Z04",
+      "title": "行前检查会",
+      "owner": "总协调",
+      "content": "召集各组，核验人数、交通、物资、企业安排、人员分工及现场流程",
+      "acceptance": "形成《行前检查表》；关键事项全部确认，未完成事项有责任人与截止时间",
+      "upstream": "Z03 风险预案；W03 企业行前复核（阶段结果先核验，T−1闭环）；M03 行前通知确认（阶段结果先核验，T−1闭环）；L02 车辆最终锁定；L03 物资采购准备；D01 签到与编组准备（阶段结果先核验，T−1闭环）；F01 拍摄清单确认（阶段结果先核验，T−1闭环）；R01 记录提纲准备（阶段结果先核验，T−1闭环）",
+      "downstream": "Z05 现场统筹应急；W04 企业现场对接；L04 装车点检；D02 集合签到宣讲；F02 参访现场摄影；R02 分享问答记录",
+      "originalTime": "T−2～T−1",
+      "schedule": {
+        "unit": "day",
+        "start": -2,
+        "end": 0
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "Z05",
+      "title": "现场统筹应急",
+      "owner": "总协调",
+      "content": "监督执行进度、协调企业与车队、处理现场变化及人员异常情况",
+      "acceptance": "关键节点人员核对无遗漏；重大变化有处置记录和及时通知",
+      "upstream": "Z04 行前检查会",
+      "downstream": "Z06 组织团队复盘；Z07 财务结算归档",
+      "originalTime": "T日 h−1.5～h+5.5",
+      "schedule": {
+        "unit": "hour",
+        "start": -1.5,
+        "end": 5.5
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "Z06",
+      "title": "组织团队复盘",
+      "owner": "总协调",
+      "content": "汇总参与者反馈，组织各组复盘执行问题与优化建议，并向部长汇报活动结果、主要问题及改进措施",
+      "acceptance": "《活动复盘纪要》完成，每项改进措施均有负责人和落实期限；已向部长汇报并留存汇报材料及反馈记录",
+      "upstream": "Z05 现场统筹应急；D03 全程带队清点；W05 企业致谢回访；P03 活动回顾发布；P04 收集分析反馈",
+      "downstream": "Z07 财务结算归档",
+      "originalTime": "T+5～T+6",
+      "schedule": {
+        "unit": "day",
+        "start": 5,
+        "end": 7
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "Z07",
+      "title": "财务结算归档",
+      "owner": "总协调",
+      "content": "核实交通、物资等支出，处理报销，归档财务及项目材料",
+      "acceptance": "《活动费用结算表》与票据完整，预算差异可解释，报销审批完成",
+      "upstream": "Z05 现场统筹应急（现场异常记录纳入归档）；Z06 组织团队复盘（先核账，T+6复盘汇报完成后汇入结案资料）；L06 票据物资收尾；P03 活动回顾发布（可先核账，T+4发布后归档回顾材料）；F03 选片整理交付；R03 纪要整理归档",
+      "downstream": "项目归档/结案",
+      "originalTime": "T+2～T+7",
+      "schedule": {
+        "unit": "day",
+        "start": 2,
+        "end": 8
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "W01",
+      "title": "企业要素确认",
+      "owner": "外联",
+      "content": "确认参访日期、时长、人数上限、参访路线及对学生专业、年级、技能等要求",
+      "acceptance": "《企业需求确认单》形成，核心事项取得企业书面确认",
+      "upstream": "Z01 任务启动",
+      "downstream": "Z02 企业承诺审核；Z03 风险预案；W02 接待流程定稿；M01 资格筛选；L01 车辆询价预留；L03 物资采购准备",
+      "originalTime": "T−21～T−17",
+      "schedule": {
+        "unit": "day",
+        "start": -21,
+        "end": -16
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "W02",
+      "title": "接待流程定稿",
+      "owner": "外联",
+      "content": "确定企业分享嘉宾、宣讲主题、互动环节、伴手礼需求、摄影限制等",
+      "acceptance": "《企业参访流程表》明确各环节时间、内容、对接人",
+      "upstream": "Z08 招募组织；W01 企业要素确认",
+      "downstream": "Z02 企业承诺审核；Z03 风险预案；P01 宣传报名准备；L03 物资采购准备；F01 拍摄清单确认；R01 记录提纲准备",
+      "originalTime": "T−17～T−15",
+      "schedule": {
+        "unit": "day",
+        "start": -17,
+        "end": -14
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "W03",
+      "title": "企业行前复核",
+      "owner": "外联",
+      "content": "向企业同步最终人数、预计抵达时间、交通信息、具体接待地点",
+      "acceptance": "获得企业最终确认，现场联系人及应急联系方式可用",
+      "upstream": "M02 确认名单建群（T−3名单确认后同步企业）；L02 车辆最终锁定",
+      "downstream": "Z04 行前检查会；W04 企业现场对接；M03 行前通知确认；F01 拍摄清单确认；R01 记录提纲准备",
+      "originalTime": "T−3～T−1",
+      "schedule": {
+        "unit": "day",
+        "start": -3,
+        "end": 0
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "W04",
+      "title": "企业现场对接",
+      "owner": "外联",
+      "content": "对接企业接待人员，配合议程推进，及时反馈临场变更",
+      "acceptance": "接待环节按确认流程完成，任何临时调整均及时同步总协调",
+      "upstream": "W03 企业行前复核；Z04 行前检查会",
+      "downstream": "W05 企业致谢回访",
+      "originalTime": "T日 h+0.75～h+4.25",
+      "schedule": {
+        "unit": "hour",
+        "start": 0.75,
+        "end": 4.25
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "W05",
+      "title": "企业致谢回访",
+      "owner": "外联",
+      "content": "发送感谢信，反馈活动情况、同学收获及可分享的影像素材",
+      "acceptance": "感谢信发送完成，形成《企业回访记录》",
+      "upstream": "W04 企业现场对接；F03 选片整理交付（可先致谢，T+2素材交付后于T+3前完成回访）；R03 纪要整理归档（T+2纪要交付后补充同学收获）",
+      "downstream": "Z06 组织团队复盘",
+      "originalTime": "T+1～T+3",
+      "schedule": {
+        "unit": "day",
+        "start": 1,
+        "end": 4
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "P01",
+      "title": "宣传报名准备",
+      "owner": "宣传",
+      "content": "撰写招募推文，介绍企业、活动亮点、报名要求；建立报名问卷；准备期间将推文初稿提交企业审核，获批准后方可发布",
+      "acceptance": "T−13前推文初稿获企业批准并留存审核记录；推文及问卷经内部审核，时间、地点、条件准确，报名链接可正常使用",
+      "upstream": "W02 接待流程定稿；Z02 企业承诺审核（先起草，承诺审核通过后完成企业审核）",
+      "downstream": "P02 招募发布与报名管理",
+      "originalTime": "T−15～T−13",
+      "schedule": {
+        "unit": "day",
+        "start": -15,
+        "end": -12
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "P02",
+      "title": "招募发布与报名管理",
+      "owner": "宣传",
+      "content": "正式发布经企业批准的推送、组织渠道转发并维护报名数据",
+      "acceptance": "T−5结束报名，导出完整报名信息并在当日筛选前移交匹配组",
+      "upstream": "P01 宣传报名准备",
+      "downstream": "M01 资格筛选",
+      "originalTime": "T−12～T−5",
+      "schedule": {
+        "unit": "day",
+        "start": -12,
+        "end": -4
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "P03",
+      "title": "活动回顾发布",
+      "owner": "宣传",
+      "content": "接收摄影、记录素材，撰写回顾推文，核实企业介绍、引用及照片授权",
+      "acceptance": "T+4当日结束前发布活动回顾，覆盖核心环节、照片清晰、内容准确且无未授权素材",
+      "upstream": "F03 选片整理交付（T日起先搭框架，T+2接收素材后定稿）；R03 纪要整理归档（T日起先搭框架，T+2接收纪要后定稿）",
+      "downstream": "Z06 组织团队复盘；Z07 财务结算归档",
+      "originalTime": "T～T+4",
+      "schedule": {
+        "unit": "day",
+        "start": 0,
+        "end": 5
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "P04",
+      "title": "收集分析反馈",
+      "owner": "宣传",
+      "content": "发放反馈问卷，整理参访体验、企业分享评价及改进建议",
+      "acceptance": "《反馈分析表》完成，记录回收数量、主要评价与改进意见",
+      "upstream": "D03 全程带队清点（T日参访结束后收集反馈）",
+      "downstream": "Z06 组织团队复盘",
+      "originalTime": "T～T+2",
+      "schedule": {
+        "unit": "day",
+        "start": 0,
+        "end": 3
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "M01",
+      "title": "资格筛选",
+      "owner": "匹配",
+      "content": "根据企业标准筛选申请者，整理符合条件者及候补名单",
+      "acceptance": "《初筛名单及候补名单》完成，筛选规则统一、结果可追溯",
+      "upstream": "P02 招募发布与报名管理；W01 企业要素确认",
+      "downstream": "M02 确认名单建群",
+      "originalTime": "T−5",
+      "schedule": {
+        "unit": "day",
+        "start": -5,
+        "end": -4
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "M02",
+      "title": "确认名单建群",
+      "owner": "匹配",
+      "content": "通知入选者、核实参加意愿、替补空缺名额，建立活动微信群",
+      "acceptance": "正式参加人数不超过企业上限，名单确认状态清晰，微信群建立",
+      "upstream": "M01 资格筛选",
+      "downstream": "W03 企业行前复核；M03 行前通知确认；L02 车辆最终锁定；L03 物资采购准备；D01 签到与编组准备",
+      "originalTime": "T−5～T−3",
+      "schedule": {
+        "unit": "day",
+        "start": -5,
+        "end": -2
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "M03",
+      "title": "行前通知确认",
+      "owner": "匹配",
+      "content": "发布集合地点与时间、着装、活动纪律、迟到规则及应急联系人；二次确认出席情况",
+      "acceptance": "T−1前形成最终确认名单，并同步给领队、后勤和总协调",
+      "upstream": "M02 确认名单建群；W03 企业行前复核（按复核进度更新，T−1完成最终通知）；L02 车辆最终锁定；Z03 风险预案",
+      "downstream": "Z04 行前检查会；D01 签到与编组准备",
+      "originalTime": "T−2～T−1",
+      "schedule": {
+        "unit": "day",
+        "start": -2,
+        "end": 0
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "L01",
+      "title": "车辆询价预留",
+      "owner": "后勤",
+      "content": "根据预估人数，联系车队、核实车辆资质、费用、路线和座位数",
+      "acceptance": "《车辆预订方案》完成，车辆容量满足预计需求，预算可控",
+      "upstream": "Z08 招募组织；W01 企业要素确认",
+      "downstream": "Z03 风险预案；L02 车辆最终锁定",
+      "originalTime": "T−12～T−8",
+      "schedule": {
+        "unit": "day",
+        "start": -12,
+        "end": -7
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "L02",
+      "title": "车辆最终锁定",
+      "owner": "后勤",
+      "content": "根据最终人数落实车辆、司机、发车点、返程安排和应急替代方案",
+      "acceptance": "《车辆确认单》包括车牌、司机联系方式、座位数、时间及费用；完成车辆入校报备",
+      "upstream": "L01 车辆询价预留；M02 确认名单建群（T−4前交付已确认人数及候补上限，T−3最终名单再核对）",
+      "downstream": "Z04 行前检查会；W03 企业行前复核；M03 行前通知确认；L04 装车点检；D01 签到与编组准备",
+      "originalTime": "T−6～T−4",
+      "schedule": {
+        "unit": "day",
+        "start": -6,
+        "end": -3
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "L03",
+      "title": "物资采购准备",
+      "owner": "后勤",
+      "content": "准备伴手礼、签到表、饮用水、横幅、扩音设备、应急药品等",
+      "acceptance": "《物资清单》完成，各项数量满足需求，重要设备测试可用",
+      "upstream": "Z08 招募组织；W01 企业要素确认；W02 接待流程定稿；M02 确认名单建群（先按人数上限备料，T−3名单确认后于T−2前核对数量）",
+      "downstream": "Z04 行前检查会；L04 装车点检",
+      "originalTime": "T−7～T−2",
+      "schedule": {
+        "unit": "day",
+        "start": -7,
+        "end": -1
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "L04",
+      "title": "装车点检",
+      "owner": "后勤",
+      "content": "检查车辆及全部现场物资，确认礼品、水、签到表等已经装车",
+      "acceptance": "《装车点检单》逐项核对，关键物资无缺漏",
+      "upstream": "L02 车辆最终锁定；L03 物资采购准备；D01 签到与编组准备；Z04 行前检查会",
+      "downstream": "L05 物资分发回收；D02 集合签到宣讲",
+      "originalTime": "T日 h−1～h−0.5",
+      "schedule": {
+        "unit": "hour",
+        "start": -1.0,
+        "end": -0.5
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "L05",
+      "title": "物资分发回收",
+      "owner": "后勤",
+      "content": "协助现场物资分发、伴手礼交换、活动结束清点和回收",
+      "acceptance": "《物资回收清单》完成，借用设备与剩余物资有明确去向",
+      "upstream": "L04 装车点检",
+      "downstream": "L06 票据物资收尾",
+      "originalTime": "T日 h+1～h+5.5",
+      "schedule": {
+        "unit": "hour",
+        "start": 1.0,
+        "end": 5.5
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "L06",
+      "title": "票据物资收尾",
+      "owner": "后勤",
+      "content": "汇总采购及交通票据，办理借用物资归还，移交费用明细",
+      "acceptance": "票据包、费用明细、物资归还记录完整并提交总协调",
+      "upstream": "L05 物资分发回收",
+      "downstream": "Z07 财务结算归档",
+      "originalTime": "T+1～T+2",
+      "schedule": {
+        "unit": "day",
+        "start": 1,
+        "end": 3
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "D01",
+      "title": "签到与编组准备",
+      "owner": "领队",
+      "content": "制作签到表，安排学生分组或乘车座位，明确签到、清点和迟到处理办法",
+      "acceptance": "《签到表》《分组名单》准备完成，与最终名单一致",
+      "upstream": "M02 确认名单建群；M03 行前通知确认（先按录取名单制表，T−1按最终出席确认更新）；L02 车辆最终锁定",
+      "downstream": "Z04 行前检查会；L04 装车点检；D02 集合签到宣讲",
+      "originalTime": "T−3～T−1",
+      "schedule": {
+        "unit": "day",
+        "start": -3,
+        "end": 0
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "D02",
+      "title": "集合签到宣讲",
+      "owner": "领队",
+      "content": "提前到达集合点，组织签到、核对人数，说明纪律、安全要求和当天流程",
+      "acceptance": "出发前确认实到人员及未到人员去向，上车人数与实际签到人数一致",
+      "upstream": "D01 签到与编组准备；Z04 行前检查会；L04 装车点检",
+      "downstream": "D03 全程带队清点",
+      "originalTime": "T日 h−0.5～h",
+      "schedule": {
+        "unit": "hour",
+        "start": -0.5,
+        "end": 0
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "D03",
+      "title": "全程带队清点",
+      "owner": "领队",
+      "content": "组织去程、企业入场、参访、离场及返程；各节点进行人员清点",
+      "acceptance": "出发、到达企业、离开企业、返校各节点人数核对完成，无人员遗漏",
+      "upstream": "D02 集合签到宣讲",
+      "downstream": "Z06 组织团队复盘；P04 收集分析反馈",
+      "originalTime": "T日 h～h+5.5",
+      "schedule": {
+        "unit": "hour",
+        "start": 0,
+        "end": 5.5
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "F01",
+      "title": "拍摄清单确认",
+      "owner": "摄影",
+      "content": "确认拍摄设备、核心场景、合影时间、企业禁拍区域及必要授权",
+      "acceptance": "《拍摄清单》完成，关键拍摄点和拍摄限制已明确",
+      "upstream": "W02 接待流程定稿；W03 企业行前复核（禁拍及授权信息随复核更新，T−1确认）",
+      "downstream": "Z04 行前检查会；F02 参访现场摄影",
+      "originalTime": "T−2～T−1",
+      "schedule": {
+        "unit": "day",
+        "start": -2,
+        "end": 0
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "F02",
+      "title": "参访现场摄影",
+      "owner": "摄影",
+      "content": "记录出发、企业参观、宣讲、互动交流、集体合照等关键场景",
+      "acceptance": "各核心环节均有清晰可用照片",
+      "upstream": "F01 拍摄清单确认；Z04 行前检查会",
+      "downstream": "F03 选片整理交付",
+      "originalTime": "T日 h−0.5～h+4.25",
+      "schedule": {
+        "unit": "hour",
+        "start": -0.5,
+        "end": 4.25
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "F03",
+      "title": "选片整理交付",
+      "owner": "摄影",
+      "content": "备份原片、筛选可用于宣传的照片，按环节分类整理，必要时修图",
+      "acceptance": "《活动照片素材包》及授权使用说明提交宣传组，重点环节照片齐全，无违反企业或参与者拍摄限制的素材",
+      "upstream": "F02 参访现场摄影",
+      "downstream": "Z07 财务结算归档；W05 企业致谢回访；P03 活动回顾发布",
+      "originalTime": "T+1～T+2",
+      "schedule": {
+        "unit": "day",
+        "start": 1,
+        "end": 3
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "R01",
+      "title": "记录提纲准备",
+      "owner": "记录",
+      "content": "根据企业议程准备记录模板、重点问题及录音安排",
+      "acceptance": "《记录提纲》完成，录音许可及保密要求已确认",
+      "upstream": "W02 接待流程定稿；W03 企业行前复核（录音及保密要求随复核更新，T−1确认）",
+      "downstream": "Z04 行前检查会；R02 分享问答记录",
+      "originalTime": "T−2～T−1",
+      "schedule": {
+        "unit": "day",
+        "start": -2,
+        "end": 0
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "R02",
+      "title": "分享问答记录",
+      "owner": "记录",
+      "content": "记录企业分享的重要观点、嘉宾发言、学生提问及企业答复",
+      "acceptance": "《现场记录》涵盖分享要点和主要Q&A，标明发言人及需核实内容",
+      "upstream": "R01 记录提纲准备；Z04 行前检查会",
+      "downstream": "R03 纪要整理归档",
+      "originalTime": "T日 h+1～h+4.25",
+      "schedule": {
+        "unit": "hour",
+        "start": 1.0,
+        "end": 4.25
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    },
+    {
+      "id": "R03",
+      "title": "纪要整理归档",
+      "owner": "记录",
+      "content": "整理企业分享干货、问答内容，核对事实及可公开引用范围",
+      "acceptance": "《企业分享纪要》《问答纪要》完成归档，并于T+2前提供给宣传组",
+      "upstream": "R02 分享问答记录",
+      "downstream": "Z07 财务结算归档；W05 企业致谢回访；P03 活动回顾发布",
+      "originalTime": "T～T+2",
+      "schedule": {
+        "unit": "day",
+        "start": 0,
+        "end": 3
+      },
+      "timeNote": "",
+      "status": "未开始",
+      "executor": "",
+      "materials": "",
+      "reviewer": "",
+      "reviewResult": "待验收",
+      "notes": ""
+    }
+  ]
+}</script>
+<script>
+'use strict';
+const SEED=JSON.parse(document.getElementById('seedData').textContent);
+const STORE='enterprise-visit-sop:'+SEED.source.path+':v1';
+const STATUSES=['未开始','进行中','待验收','已完成','受阻'];
+const OWNERS=['总协调','外联','宣传','匹配','后勤','领队','摄影','记录'];
+const COLORS=['#246b5b','#3f6b94','#987347','#796898','#647c4e','#467e81','#a66859','#60748a'];
+const FIELDS=['owner','title','executor','content','acceptance','upstream','downstream','timeNote','status','reviewer','reviewResult','materials','notes'];
+const IDS=SEED.tasks.map(t=>t.id), IDSET=new Set(IDS);
+const $=id=>document.getElementById(id), clone=v=>JSON.parse(JSON.stringify(v));
+const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const fmt=(v,unit)=>unit+(v===0?'':v<0?'−'+Math.abs(v):'+'+v);
+const parts=s=>String(s).split(/[；;\n]+/).map(x=>x.trim()).filter(x=>x&&x!=='无');
+const refs=s=>[...String(s).matchAll(/\b[A-Z]+\d+\b/g)].map(m=>m[0]);
+const unique=a=>[...new Set(a)];
+const ownerList=()=>unique([...OWNERS,...state.tasks.map(t=>t.owner)]);
+const color=o=>COLORS[ownerList().indexOf(o)%COLORS.length];
+function labelTime(t){let s=t.schedule;if(s.unit==='none')return '待排期 / 不限时';let e=s.unit==='day'?s.end-1:s.end;return (s.unit==='hour'?'T日 ':'')+fmt(s.start,s.unit==='day'?'T':'h')+(e===s.start?'':' ～ '+fmt(e,s.unit==='day'?'T':'h'));}
+function phases(t){let s=t.schedule;return s.unit==='none'?['none']:s.unit==='hour'?['event']:[...(s.start<0?['prep']:[]),...(s.end>0?['post']:[])];}
+function phaseText(t){return phases(t).map(p=>({prep:'筹备期',event:'活动当天',post:'活动后（T日起）',none:'待排期'})[p]).join(' / ');}
+function dateDay(offset){if(!state.settings.eventDate)return '';let d=new Date(state.settings.eventDate+'T12:00:00');d.setDate(d.getDate()+offset);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
+function actualTime(t){if(!state.settings.eventDate||t.schedule.unit==='none')return '';let s=t.schedule;if(s.unit==='day')return dateDay(s.start)+(s.end-1!==s.start?' ～ '+dateDay(s.end-1):'')+' · 截止日结束';let [hh,mm]=state.settings.departureTime.split(':').map(Number);function one(n){let mins=Math.round(hh*60+mm+n*60),off=Math.floor(mins/1440);mins=((mins%1440)+1440)%1440;return `${dateDay(off)} ${String(Math.floor(mins/60)).padStart(2,'0')}:${String(mins%60).padStart(2,'0')}`;}return one(s.start)+' ～ '+one(s.end);}
+let state=clone(SEED), history=[], revision=null, editingId=null, editTimer=null, draftDirty=false, toastTimer=null, drag=null, dragConsumed=false, storageConflict=false, storageBlocked=false;
+let filters={search:'',owner:'',phase:'',status:''}, expanded=new Set(), activeTab='gantt';
+function validate(data){
+ let errors=[];
+ if(!data||data.schemaVersion!==1||!Array.isArray(data.tasks)||!data.settings||!data.source)return ['文件结构或版本不受支持'];
+ if(data.tasks.length!==IDS.length||data.tasks.some(t=>!t||!IDSET.has(t.id))||new Set(data.tasks.map(t=>t.id)).size!==IDS.length)return ['必须包含原始 35 个任务编号各一次，编号不可新增、删除或替换'];
+ const map=new Map(data.tasks.map(t=>[t.id,t]));
+ if(typeof data.settings.eventDate!=='string'||(data.settings.eventDate!==''&&!/^\d{4}-\d{2}-\d{2}$/.test(data.settings.eventDate)))errors.push('参访日期格式应为 YYYY-MM-DD');
+ if(data.settings.eventDate){let d=new Date(data.settings.eventDate+'T12:00:00');if(isNaN(d)||`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`!==data.settings.eventDate)errors.push('参访日期无效');}
+ if(!/^([01]\d|2[0-3]):[0-5]\d$/.test(data.settings.departureTime))errors.push('出发时刻无效');
+ if(data.source.path!==SEED.source.path||data.source.sha256!==SEED.source.sha256||data.source.markdown!==SEED.source.markdown)errors.push('此 JSON 的原文快照与当前页面不同，请先核对版本');
+ for(const t of data.tasks){
+  for(const k of [...FIELDS,'originalTime'])if(typeof t[k]!=='string'||t[k].length>30000)errors.push(t.id+' 字段 '+k+' 格式无效或过长');
+  if(FIELDS.some(k=>typeof t[k]!=='string'))continue;
+  if(!t.title.trim()||!t.owner.trim()||!t.content.trim()||!t.acceptance.trim())errors.push(t.id+' 的岗位、标题、内容和交付标准必填');
+  if(!STATUSES.includes(t.status)||!['待验收','通过','需整改'].includes(t.reviewResult))errors.push(t.id+' 状态或验收结果无效');
+  if(t.status==='已完成'&&t.reviewResult!=='通过')errors.push(t.id+' 标记已完成前，请将验收结果设为“通过”');
+  let s=t.schedule;
+  if(!s||!['day','hour','none'].includes(s.unit)){errors.push(t.id+' 时间粒度无效');continue;}
+  if(s.unit==='none'){if(s.start!==null||s.end!==null)errors.push(t.id+' 待排期的起止必须为 null');}
+  else if(!Number.isFinite(s.start)||!Number.isFinite(s.end)||s.start>=s.end)errors.push(t.id+' 开始必须早于结束（日级包含截止日）');
+  else if(s.unit==='day'&&(!Number.isInteger(s.start)||!Number.isInteger(s.end)||s.start< -366||s.end>367))errors.push(t.id+' 日级偏移应为 −366 至 +366 的整数');
+  else if(s.unit==='hour'&&(s.start< -24||s.end>48))errors.push(t.id+' 小时级偏移应在 h−24 至 h+48 之间');
+  for(const direction of ['upstream','downstream']){
+   let r=refs(t[direction]);if(unique(r).length!==r.length)errors.push(t.id+' '+direction+' 存在重复编号');
+   for(const id of r){if(!map.has(id))errors.push(t.id+' 引用了未知任务 '+id);else if(id===t.id)errors.push(t.id+' 不可依赖自身');else if(!refs(map.get(id)[direction==='upstream'?'downstream':'upstream']).includes(t.id))errors.push(t.id+' 与 '+id+' 的依赖引用不一致');}
+  }
+ }
+ if(!errors.length){let visited=new Set(),stack=new Set();function visit(id){if(stack.has(id))return true;if(visited.has(id))return false;stack.add(id);for(const v of refs(map.get(id).downstream)){if(visit(v))return true;}stack.delete(id);visited.add(id);return false;}if(data.tasks.some(t=>visit(t.id)))errors.push('依赖关系形成环路，请调整上下游');}
+ return unique(errors);
+}
+function notices(data){let list=[];let map=new Map(data.tasks.map(t=>[t.id,t]));
+ for(const t of data.tasks){let s=t.schedule;
+  for(const id of refs(t.upstream)){let u=map.get(id),a=u?.schedule;if(!u)continue;
+   let overlap=false, impossible=false;
+   if(a.unit!=='none'&&s.unit!=='none'){
+    if(a.unit===s.unit){overlap=a.unit==='day'?a.end-1>s.start:a.end>s.start;impossible=a.unit==='day'?a.end-1>s.end-1:a.end>s.end;}
+    else if(a.unit==='day'&&s.unit==='hour'){overlap=a.end-1>=0;impossible=a.end-1>0;}
+    else if(a.unit==='hour'&&s.unit==='day'){overlap=s.start<=0;impossible=s.end-1<0;}
+   }
+   if(overlap){let text=parts(t.upstream).find(p=>refs(p).includes(id))||'';let note=/（|\(/.test(text);list.push({type:impossible&&!note?'risk':'overlap',task:t.id,text:`${t.id} ${t.title} ← ${id} ${u.title}：${note?'原文有分阶段交付备注，请按备注交接':'时间重叠，请确认同日顺序或阶段交付'}${impossible&&!note?'；上游截止晚于本任务截止':''}`});}
+  }
+  if(t.status==='已完成'){let pending=refs(t.upstream).filter(id=>map.get(id)?.status!=='已完成');if(pending.length)list.push({type:'risk',task:t.id,text:t.id+' 已完成，但上游 '+pending.join('、')+' 尚未完成，请复核验收。'});}
+  if(t.reviewResult==='通过'&&t.status!=='已完成')list.push({type:'info',task:t.id,text:t.id+' 已验收通过，任务状态仍为“'+t.status+'”。'});
+ }
+ return list;
+}
+function toast(msg,error=false){clearTimeout(toastTimer);$('toast').textContent=msg;$('toast').classList.toggle('error',error);$('toast').hidden=false;toastTimer=setTimeout(()=>$('toast').hidden=true,error?8000:4200);}
+function setSave(text,failed=false){$('saveState').textContent=text;$('saveState').classList.toggle('failed',failed);}
+function timeNow(){return new Date().toLocaleTimeString('zh-CN',{hour12:false});}
+function persist(){
+ if(storageConflict||storageBlocked){setSave('本地记录待处理 · 当前编辑仅在内存，请导出 JSON',true);return false;}
+ try{const current=localStorage.getItem(STORE);if(current){const parsed=JSON.parse(current);if(parsed.revision!==revision){storageConflict=true;setSave('另一窗口已更新 · 请导出当前编辑，再刷新或导入',true);toast('检测到其他窗口更新，已暂停覆盖本地记录。请导出当前编辑，再刷新读取最新记录。',true);return false;}}
+ const nextRevision=Date.now()+':'+Math.random().toString(36).slice(2);state.savedAt=new Date().toISOString();localStorage.setItem(STORE,JSON.stringify({revision:nextRevision,data:state}));revision=nextRevision;setSave('● 已自动保存于此浏览器 · '+timeNow());return true;
+ }catch(e){setSave('本地保存失败 · 请立即导出 JSON 备份',true);return false;}
+}
+function load(){try{let raw=localStorage.getItem(STORE);if(!raw){setSave('使用原文初始数据 · 编辑后自动保存');return;}let p=JSON.parse(raw),errs=validate(p.data);if(errs.length)throw Error(errs[0]);state=p.data;revision=p.revision;setSave('● 已恢复浏览器本地记录');}catch(e){storageBlocked=true;setSave('本地记录无法读取 · 使用初始数据，请导出或导入有效备份',true);toast('原有本地记录已保留，无法读取：'+e.message,true);}}
+function commit(next,{skipCompletion=false}={}){
+ let errs=validate(next);if(errs.length)return errs;
+ if(!skipCompletion){for(const t of next.tasks){let old=state.tasks.find(x=>x.id===t.id);if(t.status==='已完成'&&old.status!=='已完成'){let unfinished=refs(t.upstream).filter(id=>next.tasks.find(x=>x.id===id)?.status!=='已完成');if(unfinished.length)return [t.id+' 的上游 '+unfinished.join('、')+' 尚未完成，请先完成并验收上游。'];}}}
+ history.push(clone(state));if(history.length>30)history.shift();state=next;persist();render();return [];
+}
+function filtered(){let q=filters.search.trim().toLowerCase();return state.tasks.filter(t=>(!filters.owner||t.owner===filters.owner)&&(!filters.phase||phases(t).includes(filters.phase))&&(!filters.status||t.status===filters.status)&&(!q||[t.id,...FIELDS.map(k=>t[k]),labelTime(t)].join(' ').toLowerCase().includes(q)));}
+function updateOptions(){let sel=$('ownerFilter'),v=sel.value;sel.innerHTML='<option value="">全部岗位</option>'+ownerList().map(o=>`<option value="${escapeHTML(o)}">${escapeHTML(o)}</option>`).join('');sel.value=v;$('ownerOptions').innerHTML=ownerList().map(o=>`<option value="${escapeHTML(o)}"></option>`).join('');}
+function render(){updateOptions();$('totalMetric').textContent=state.tasks.length;$('doneMetric').textContent=state.tasks.filter(t=>t.status==='已完成').length;$('activeMetric').textContent=state.tasks.filter(t=>['进行中','待验收'].includes(t.status)).length;$('blockedMetric').textContent=state.tasks.filter(t=>t.status==='受阻').length;$('undoBtn').disabled=!history.length;$('eventDate').value=state.settings.eventDate;$('departureTime').value=state.settings.departureTime;
+ let tasks=filtered();$('resultCount').textContent=`显示 ${tasks.length} / ${state.tasks.length} 项`;
+ renderGantt(tasks);renderList(tasks);renderHealth();
+ $('configHint').textContent=state.settings.eventDate?`T = ${state.settings.eventDate}，h = ${state.settings.departureTime}；实际日期显示在任务详情。`:'可选填写实际日期；所有任务仍按 T / h 表示。';
+}
+function renderGantt(tasks){
+ let configs=[{id:'prep',title:'筹备期',subtitle:'以参访日 T 为基准 · 单位：天',min:-21,max:0,step:1,num:'01'},{id:'event',title:'活动当天',subtitle:'以出发时刻 h 为基准 · 单位：小时，拖动步长 15 分钟',min:-1.5,max:6,step:.25,num:'02'},{id:'post',title:'活动后',subtitle:'从 T 日开始收尾 · 单位：天，含参访日启动的回顾与纪要',min:0,max:8,step:1,num:'03'}];
+ let html='';
+ for(let c of configs){if(filters.phase&&filters.phase!==c.id)continue;let ts=tasks.filter(t=>phases(t).includes(c.id));let all=state.tasks.filter(t=>phases(t).includes(c.id));
+  if(c.id==='prep'){c.min=Math.min(c.min,...all.map(t=>t.schedule.start));}
+  else if(c.id==='post'){c.max=Math.max(c.max,...all.map(t=>t.schedule.end));}
+  else {c.min=Math.floor(Math.min(c.min,...all.map(t=>t.schedule.start))*2)/2;c.max=Math.ceil(Math.max(c.max,...all.map(t=>t.schedule.end))*2)/2;}
+  let tick=c.id==='event'?.5:1,n=Math.round((c.max-c.min)/tick), minWidth=c.id==='event'?Math.max(780,n*46):Math.max(660,Math.min(n*38,12000));
+  html+=`<article class="phase"><div class="phase-heading"><div><h3><span class="phase-num">${c.num}</span>${c.title}</h3><p>${c.subtitle}</p></div><span class="chip">${ts.length} 项</span></div>`;
+  if(!ts.length){html+='<div class="empty-inline">此阶段暂无匹配任务</div></article>';continue;}
+  html+=`<div class="gantt-scroll" data-scroll="${c.id}"><div class="gantt-grid" style="--axis-min:${minWidth}px;--ticks:${n}"><div class="axis-name">负责人 / 任务</div><div class="axis-track">`;
+  // Wide time spans use sparse tick labels without creating a tiny unreadable timeline.
+  let stride=Math.max(1,Math.ceil(n/90));for(let i=0;i<n;i++){let val=Math.round((c.min+i*tick)*100)/100;html+=`<span title="${fmt(val,c.id==='event'?'h':'T')}">${i%stride===0?fmt(val,c.id==='event'?'h':'T'):''}</span>`;}
+  html+='</div><div class="axis-time">起止时间</div>';
+  for(let owner of ownerList()){let group=ts.filter(t=>t.owner===owner);if(!group.length)continue;html+=`<div class="owner-band" style="--owner-color:${color(owner)}"><i class="owner-dot"></i>${escapeHTML(owner)} <span class="code">${group.length} 项</span></div>`;
+   for(let t of group){let s=t.schedule,a=Math.max(c.min,s.start),b=Math.min(c.max,s.end),left=(a-c.min)/(c.max-c.min)*100,width=(b-a)/(c.max-c.min)*100;
+    let title=`${t.id} ${t.title} · ${labelTime(t)} · ${t.status}`;
+    html+=`<button class="task-name" data-edit="${t.id}" title="${escapeHTML(title)}"><span class="code">${t.id}</span>${escapeHTML(t.title)}</button><div class="track" data-min="${c.min}" data-max="${c.max}" data-step="${c.step}" data-phase="${c.id}"><div tabindex="0" role="button" aria-label="编辑 ${escapeHTML(title)}" class="bar ${t.status==='已完成'?'done':''} ${t.status==='受阻'?'blocked':''}" data-task="${t.id}" style="--owner-color:${color(owner)};left:${left}%;width:${width}%" title="${escapeHTML(title)}">${s.start>=c.min?'<span class="handle left" data-handle="start" aria-hidden="true"></span>':''}<span class="bar-label">${escapeHTML(t.title)}</span>${s.end<=c.max?'<span class="handle right" data-handle="end" aria-hidden="true"></span>':''}</div></div><div class="row-time" data-time="${t.id}">${escapeHTML(labelTime(t))}</div>`;
+   }
+  }
+  html+='</div></div></article>';
+ }
+ let us=tasks.filter(t=>t.schedule.unit==='none');if((!filters.phase||filters.phase==='none')&&us.length)html+=`<article class="phase"><div class="phase-heading"><h3>待排期 / 不限时</h3><span class="chip">${us.length} 项</span></div><div class="unscheduled">${us.map(t=>`<button data-edit="${t.id}">${t.id} ${escapeHTML(t.title)} · ${escapeHTML(t.owner)}</button>`).join('')}</div></article>`;
+ if(!tasks.length)html='<div class="empty">未找到匹配任务，请调整筛选条件。</div>';
+ let scrolls=[...$('ganttContent').querySelectorAll('[data-scroll]')].map(e=>[e.dataset.scroll,e.scrollLeft,e.scrollTop]);$('ganttContent').innerHTML=html;for(const [id,x,y] of scrolls){let el=$('ganttContent').querySelector(`[data-scroll="${id}"]`);if(el){el.scrollLeft=x;el.scrollTop=y;}}
+}
+function richRefs(text){return escapeHTML(text).replace(/\b([A-Z]+\d+)\b/g,(m,id)=>IDSET.has(id)?`<button class="link-button" data-edit="${id}">${id}</button>`:m);}
+function renderList(tasks){let html='';for(let owner of ownerList()){let group=tasks.filter(t=>t.owner===owner);if(!group.length)continue;html+=`<div class="list-owner" style="--owner-color:${color(owner)}"><h3><i class="owner-dot"></i>${escapeHTML(owner)} <small>${group.length} 项任务</small></h3>`;for(const t of group){let open=expanded.has(t.id);html+=`<article class="task-card" id="card-${t.id}"><button class="card-main" data-expand="${t.id}" aria-expanded="${open}" aria-controls="detail-${t.id}"><span class="code">${t.id}</span><span class="card-title">${escapeHTML(t.title)}<small>${phaseText(t)} · ${escapeHTML(t.executor||'待指定执行人')}</small></span><span class="status ${t.status}">${t.status}</span><span class="card-time">${escapeHTML(labelTime(t))}</span><span aria-hidden="true">${open?'−':'+'}</span></button><div class="card-detail" id="detail-${t.id}" ${open?'':'hidden'}><dl class="detail-grid"><div><dt>具体执行内容</dt><dd><p>${escapeHTML(t.content)}</p></dd></div><div><dt>交付标准</dt><dd><p>${escapeHTML(t.acceptance)}</p></dd></div><div><dt>上游依赖</dt><dd><p>${richRefs(t.upstream||'无')}</p></dd></div><div><dt>下游交付</dt><dd><p>${richRefs(t.downstream||'无')}</p></dd></div><div><dt>时间要求</dt><dd><p>${escapeHTML(labelTime(t))}${t.timeNote?'\n'+escapeHTML(t.timeNote):''}${actualTime(t)?'\n'+escapeHTML(actualTime(t)):''}</p></dd></div><div><dt>验收与交付材料</dt><dd><p>${escapeHTML(t.reviewResult)} · ${escapeHTML(t.reviewer||'待指定验收人')}${t.materials?'\n'+escapeHTML(t.materials):''}</p></dd></div>${t.notes?`<div class="wide"><dt>执行备注</dt><dd><p>${escapeHTML(t.notes)}</p></dd></div>`:''}</dl><button class="primary" data-edit="${t.id}">编辑此任务</button></div></article>`;}html+='</div>';}$('listContent').innerHTML=html||'<div class="empty">未找到匹配任务，请调整筛选条件。</div>';}
+function renderHealth(){let ns=notices(state),risks=ns.filter(n=>n.type==='risk'),others=ns.filter(n=>n.type!=='risk');$('healthSummary').textContent=`排期与依赖核对 · ${risks.length} 项需协调 / ${others.length} 项交接提醒 · 原文 1 处差异`;$('healthContent').innerHTML='<p><strong>原文差异：</strong>Z01 任务表为 T−21，首段及验收表写“启动不限时”。初始按任务表 T−21 排期，可在任务详情改为不限时。</p><p>日级任务可同日先后交接；原文允许并行准备和阶段性交付。以下为提醒，保留原文排期，请结合依赖备注核对。</p>'+[...risks,...others].map(n=>`<p class="${n.type==='risk'?'error':''}"><button class="link-button" data-edit="${n.task}">${n.task}</button> ${escapeHTML(n.text)}</p>`).join('');}
+function switchTab(tab){activeTab=tab;$('ganttView').hidden=tab!=='gantt';$('listView').hidden=tab!=='list';$('ganttTab').setAttribute('aria-selected',tab==='gantt');$('listTab').setAttribute('aria-selected',tab==='list');}
+function normalizeText(text,tasks){return parts(text).map(p=>{
+ const match=p.match(/^([A-Z]+\d+)(?:\s+|$)/);if(!match)return p;
+ const id=match[1],task=tasks.find(x=>x.id===id);if(!task)return p;
+ const rest=p.slice(id.length).trim(),previous=state.tasks.find(x=>x.id===id);
+ const titles=unique([task.title,previous?.title].filter(Boolean)).sort((a,b)=>b.length-a.length);
+ const known=titles.find(title=>rest.startsWith(title));
+ const suffix=known?rest.slice(known.length):rest.slice(rest.search(/[（(]/)<0?rest.length:rest.search(/[（(]/));
+ return id+' '+task.title+suffix;
+ }).join('；')||'无';}
+function removeRef(text,id){return parts(text).filter(p=>!refs(p).includes(id)).join('；')||'无';}
+function appendRef(text,id,title){let p=parts(text);if(!refs(text).includes(id))p.push(id+' '+title);return p.join('；')||'无';}
+function reconcileTask(data,id,old){let t=data.tasks.find(x=>x.id===id);
+ for(const side of ['upstream','downstream']){let opposite=side==='upstream'?'downstream':'upstream',before=refs(old[side]),after=refs(t[side]);for(const targetId of unique([...before,...after])){let other=data.tasks.find(x=>x.id===targetId);if(!other||other.id===id)continue;if(before.includes(targetId)&&!after.includes(targetId))other[opposite]=removeRef(other[opposite],id);else if(after.includes(targetId))other[opposite]=appendRef(other[opposite],id,t.title);}}
+ // Refresh referenced titles while retaining each side's original handover note.
+ for(const item of data.tasks){for(const key of ['upstream','downstream'])item[key]=normalizeText(item[key],data.tasks);}
+}
+const form=$('editForm');function el(name){return form.elements.namedItem(name);}
+function fillEditor(t){for(const k of FIELDS)el(k).value=t[k];el('unit').value=t.schedule.unit;el('start').value=t.schedule.start??'';el('end').value=t.schedule.unit==='day'?t.schedule.end-1:t.schedule.end??'';draftDirty=false;$('editHeading').textContent=t.id+' · '+t.title;$('originalTime').textContent='原文时间：'+t.originalTime+' · 编号固定';$('taskNotice').hidden=t.id!=='Z01';$('taskNotice').textContent='原文任务表为 T−21，其他段落为“启动不限时”；初始排期按任务表，可按实际改为不限时。';updateScheduleUI();setFormState('有效修改会在停止输入约半秒后自动保存');}
+function openEditor(id){if(editingId&&editingId!==id&&!flushDraft())return;let t=state.tasks.find(x=>x.id===id);if(!t)return;clearTimeout(editTimer);editingId=id;fillEditor(t);if(!$('editor').open)$('editor').showModal();}
+function setFormState(msg,error=false){$('formState').textContent=msg;$('formState').classList.toggle('error',error);}
+function updateScheduleUI(){let unit=el('unit').value,none=unit==='none',day=unit==='day';el('start').disabled=none;el('end').disabled=none;el('start').step=day?'1':'any';el('end').step=day?'1':'any';$('startLabel').textContent=day?'开始日偏移':'开始小时偏移';$('endLabel').textContent=day?'截止日偏移（含当天）':'结束小时偏移';$('scheduleHint').textContent=none?'该任务保留在待排期区，不占用时间轴。':day?'填整数天数：−5 表示 T−5，0 表示 T。开始日与截止日都包含当天，可设置为同一天；范围 −366～+366。':'填出发前后小时数：−0.5 表示 h−0.5（提前 30 分钟）。结束必须严格晚于开始；范围 −24～+48。';
+ try{let start=Number(el('start').value),end=Number(el('end').value);$('timePreview').textContent=none?'待排期 / 不限时':el('start').value!==''&&el('end').value!==''?labelTime({schedule:{unit,start,end:day?end+1:end}}):'请填写起止时间';}catch(e){$('timePreview').textContent='请填写起止时间';}}
+function getDraft(){let t=clone(state.tasks.find(t=>t.id===editingId));for(const k of FIELDS)t[k]=el(k).value.trim();let unit=el('unit').value;if(unit!=='none'&&(el('start').value===''||el('end').value===''))throw Error('请填写开始与结束时间；不限时任务请选择“待排期 / 不限时”');t.schedule={unit,start:unit==='none'?null:Number(el('start').value),end:unit==='none'?null:Number(el('end').value)+(unit==='day'?1:0)};return t;}
+function flushDraft(){clearTimeout(editTimer);if(!editingId||!draftDirty)return true;try{let t=getDraft(),old=state.tasks.find(x=>x.id===editingId);if(JSON.stringify(t)===JSON.stringify(old)){draftDirty=false;setFormState('当前任务已保存');return true;}let data=clone(state);data.tasks[data.tasks.findIndex(x=>x.id===editingId)]=t;reconcileTask(data,editingId,old);let errors=commit(data);if(errors.length)throw Error(errors.slice(0,3).join('；'));draftDirty=false;$('editHeading').textContent=t.id+' · '+t.title;setFormState(storageConflict||storageBlocked?'修改已同步 · 请导出 JSON 备份':'已保存 · 两个视图已同步 · '+timeNow());return true;}catch(e){setFormState(e.message,true);return false;}}
+function closeEditor(){if(!flushDraft()&&!confirm('当前输入尚未通过校验。放弃本次未保存的输入并关闭？此前保存的修改会保留。'))return;clearTimeout(editTimer);draftDirty=false;editingId=null;$('editor').close();}
+form.addEventListener('input',e=>{if(!editingId)return;draftDirty=true;setFormState('正在编辑…');updateScheduleUI();clearTimeout(editTimer);editTimer=setTimeout(flushDraft,550);});
+form.addEventListener('change',e=>{if(e.target.name==='unit'){clearTimeout(editTimer);el('start').value='';el('end').value='';updateScheduleUI();draftDirty=true;if(el('unit').value==='none')editTimer=setTimeout(flushDraft,550);else setFormState('时间粒度已改变，请重新填写起止偏移；天数与小时不会自动转换。');}});
+form.addEventListener('submit',e=>{e.preventDefault();if(flushDraft()){editingId=null;$('editor').close();}});
+$('closeEditor').onclick=closeEditor;$('editor').addEventListener('cancel',e=>{e.preventDefault();closeEditor();});
+$('resetTask').onclick=()=>{if(!confirm('将此任务还原为 SOP.md 初始内容与排期？关联任务的依赖会同步；其他任务字段保留。'))return;clearTimeout(editTimer);let data=clone(state),old=data.tasks.find(x=>x.id===editingId);data.tasks[data.tasks.findIndex(x=>x.id===editingId)]=clone(SEED.tasks.find(x=>x.id===editingId));reconcileTask(data,editingId,old);let errs=commit(data);if(errs.length){setFormState(errs[0],true);return;}fillEditor(state.tasks.find(x=>x.id===editingId));toast('此任务已还原，关联依赖已同步。');};
+function documentClick(e){let edit=e.target.closest('[data-edit]');if(edit){openEditor(edit.dataset.edit);return;}let exp=e.target.closest('[data-expand]');if(exp){let id=exp.dataset.expand;expanded.has(id)?expanded.delete(id):expanded.add(id);renderList(filtered());}let close=e.target.closest('[data-close]');if(close)$(close.dataset.close).close();}
+document.addEventListener('click',documentClick);
+$('ganttContent').addEventListener('click',e=>{let bar=e.target.closest('.bar');if(!bar)return;if(dragConsumed){dragConsumed=false;return;}openEditor(bar.dataset.task);});
+$('ganttContent').addEventListener('keydown',e=>{let bar=e.target.closest('.bar');if(bar&&['Enter',' '].includes(e.key)){e.preventDefault();openEditor(bar.dataset.task);}});
+$('ganttContent').addEventListener('pointerdown',e=>{let bar=e.target.closest('.bar');if(!bar||e.button!==0)return;let track=bar.parentElement,task=state.tasks.find(t=>t.id===bar.dataset.task);dragConsumed=false;drag={pointerId:e.pointerId,bar,track,id:task.id,initial:clone(task.schedule),candidate:clone(task.schedule),x:e.clientX,min:Number(track.dataset.min),max:Number(track.dataset.max),step:Number(track.dataset.step),mode:e.target.closest('[data-handle]')?.dataset.handle||'move',moved:false};bar.setPointerCapture(e.pointerId);});
+document.addEventListener('pointermove',e=>{if(!drag||drag.pointerId!==e.pointerId)return;let d=drag,dx=e.clientX-d.x;if(!d.moved&&Math.abs(dx)<4)return;d.moved=true;dragConsumed=true;e.preventDefault();document.body.classList.add('drag-active');d.bar.classList.add('dragging');let delta=Math.round(dx/d.track.getBoundingClientRect().width*(d.max-d.min)/d.step)*d.step;delta=Math.round(delta*10000)/10000;let s=clone(d.initial),len=s.end-s.start;
+ if(d.mode==='move'){s.start=Math.max(d.min,Math.min(d.max-len,s.start+delta));s.end=s.start+len;}else if(d.mode==='start')s.start=Math.max(d.min,Math.min(s.end-d.step,s.start+delta));else s.end=Math.min(d.max,Math.max(s.start+d.step,s.end+delta));
+ s.start=Math.round(s.start*10000)/10000;s.end=Math.round(s.end*10000)/10000;d.candidate=s;let a=Math.max(d.min,s.start),b=Math.min(d.max,s.end);d.bar.style.left=((a-d.min)/(d.max-d.min)*100)+'%';d.bar.style.width=((b-a)/(d.max-d.min)*100)+'%';let text=labelTime({schedule:s});d.track.nextElementSibling.textContent=text;$('dragTip').textContent=text;$('dragTip').hidden=false;$('dragTip').style.left=Math.max(8,Math.min(window.innerWidth-220,e.clientX+12))+'px';$('dragTip').style.top=Math.max(8,e.clientY-45)+'px';});
+function finishDrag(e,cancel=false){if(!drag||e.pointerId!==drag.pointerId)return;let d=drag;drag=null;document.body.classList.remove('drag-active');$('dragTip').hidden=true;try{d.bar.releasePointerCapture(e.pointerId);}catch(_){}
+ if(!d.moved)return;if(cancel){renderGantt(filtered());return;}let data=clone(state);data.tasks.find(t=>t.id===d.id).schedule=d.candidate;if(JSON.stringify(d.initial)===JSON.stringify(d.candidate)){renderGantt(filtered());return;}let errs=commit(data);if(errs.length){toast(errs[0],true);renderGantt(filtered());}else toast(d.id+' 已更新为 '+labelTime({schedule:d.candidate})+'；请核对依赖交接。');}
+document.addEventListener('pointerup',e=>finishDrag(e));document.addEventListener('pointercancel',e=>finishDrag(e,true));document.addEventListener('keydown',e=>{if(e.key==='Escape'&&drag)finishDrag({pointerId:drag.pointerId},true);});
+function download(name,text,type){let url=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),15000);}
+function stamp(){return new Date().toISOString().replace(/[:.]/g,'-').slice(0,19);}
+function serialize(){return JSON.stringify({...state,exportedAt:new Date().toISOString()},null,2);}
+function exportJSON(){if(editingId&&!flushDraft()){toast('请先修正任务中的无效输入，再导出。',true);return;}download('企业参访_SOP_'+stamp()+'.json',serialize(),'application/json;charset=utf-8');toast('已导出完整 JSON，请妥善保存以便恢复或交接。');}
+function markdown(){const cell=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\|/g,'&#124;').replace(/\r?\n/g,'<br>');let out='# 企业参访 SOP · 当前任务清单\n\n导出时间：'+new Date().toLocaleString('zh-CN',{hour12:false})+'\n\n参访日 T：'+(state.settings.eventDate||'待定')+'；出发时刻 h：'+state.settings.departureTime+'\n\n源文件：'+state.source.path+'\n\n源文件 SHA-256：'+state.source.sha256+'\n\n说明：本文件为当前任务数据的独立导出，未回写 SOP.md，未同步修改原文其他章节的关键验收节点。T±天按含截止日的区间表示，h±小时为精确时刻。Z01 原文任务表为 T−21，其他段落写启动不限时。\n\n';for(const owner of ownerList()){let tasks=state.tasks.filter(t=>t.owner===owner);if(!tasks.length)continue;out+='## '+cell(owner)+'\n\n| 任务 | 时间要求 | 具体执行内容 | 交付标准 | 上游依赖 | 下游交付 | 实际执行人 | 执行状态 | 交付材料链接/路径 | 验收人 | 验收结果 | 执行备注 |\n| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |\n';for(const t of tasks)out+='| '+[t.id+' '+t.title,labelTime(t)+(t.timeNote?'；'+t.timeNote:''),t.content,t.acceptance,t.upstream,t.downstream,t.executor,t.status,t.materials,t.reviewer,t.reviewResult,t.notes].map(cell).join(' | ')+' |\n';out+='\n';}let ns=notices(state);if(ns.length)out+='## 交接核对提醒\n\n'+ns.map(n=>'- '+cell(n.text)).join('\n')+'\n';return out;}
+$('exportBtn').onclick=exportJSON;$('markdownBtn').onclick=()=>{if(editingId&&!flushDraft()){toast('请先修正无效输入。',true);return;}download('SOP_任务清单_'+stamp()+'.md',markdown(),'text/markdown;charset=utf-8');toast('已导出独立 Markdown 任务清单，SOP.md 保持原样。');};
+$('importBtn').onclick=()=>{if(editingId&&!flushDraft())return;$('jsonFile').value='';$('jsonFile').click();};
+$('jsonFile').onchange=async e=>{let file=e.target.files[0];if(!file)return;try{if(file.size>5*1024*1024)throw Error('文件超过 5 MB，请选择本页面导出的 JSON');let data=JSON.parse(await file.text());let errs=validate(data);if(errs.length)throw Error(errs.slice(0,4).join('；'));let changed=data.tasks.filter(t=>JSON.stringify(t)!==JSON.stringify(state.tasks.find(x=>x.id===t.id))).length;let pending=notices(data).filter(n=>n.type==='risk').length;if(!confirm(`已校验 35 项任务及依赖。\n${changed} 项任务与当前不同，${pending} 项需协调提醒。\n确认替换当前数据和活动设置？导入前会先下载当前 JSON 备份。`))return;
+ download('导入前备份_'+stamp()+'.json',serialize(),'application/json;charset=utf-8');if(storageConflict||storageBlocked){try{let p=JSON.parse(localStorage.getItem(STORE)||'null');revision=p?.revision??null;}catch(_){revision=null;try{localStorage.removeItem(STORE);}catch(_){} }storageConflict=false;storageBlocked=false;}
+ let errors=commit(clone(data),{skipCompletion:true});if(errors.length)throw Error(errors[0]);if(editingId)fillEditor(state.tasks.find(t=>t.id===editingId));toast('JSON 导入成功，甘特图与速查已同步。');}catch(err){toast('导入未完成：'+err.message,true);}};
+$('undoBtn').onclick=()=>{if(editingId&&!flushDraft())return;if(!history.length)return;state=history.pop();persist();render();if(editingId)fillEditor(state.tasks.find(t=>t.id===editingId));toast('已撤销最近一次有效修改。');};
+$('helpBtn').onclick=()=>$('helpDialog').showModal();$('sourceBtn').onclick=()=>{$('sourceText').textContent=state.source.markdown;$('sourceDialog').showModal();};
+$('ganttTab').onclick=()=>switchTab('gantt');$('listTab').onclick=()=>switchTab('list');
+for(const [id,key] of [['search','search'],['ownerFilter','owner'],['phaseFilter','phase'],['statusFilter','status']])$(id).addEventListener(id==='search'?'input':'change',e=>{filters[key]=e.target.value;render();});
+$('clearFilters').onclick=()=>{filters={search:'',owner:'',phase:'',status:''};for(const id of ['search','ownerFilter','phaseFilter','statusFilter'])$(id).value='';render();};
+for(const id of ['eventDate','departureTime'])$(id).addEventListener('change',e=>{let next=clone(state);next.settings[id]=e.target.value;let errs=commit(next);if(errs.length){toast(errs[0],true);render();}});
+window.addEventListener('storage',e=>{if(e.key!==STORE)return;storageConflict=true;setSave('另一窗口已更新 · 请导出当前编辑，再刷新或导入',true);toast('其他窗口修改了此项目。已暂停覆盖本地记录，请导出当前编辑后再刷新。',true);});
+window.addEventListener('beforeunload',e=>{if(editingId&&draftDirty&&!flushDraft()){e.preventDefault();e.returnValue='';}if(storageConflict||storageBlocked||$('saveState').classList.contains('failed')){e.preventDefault();e.returnValue='';}});
+$('statusFilter').innerHTML='<option value="">全部状态</option>'+STATUSES.map(s=>`<option>${s}</option>`).join('');el('status').innerHTML=STATUSES.map(s=>`<option>${s}</option>`).join('');
+load();$('sourceHash').textContent=' SHA-256：'+SEED.source.sha256.slice(0,12)+'…';render();
+// Small, read-only diagnostics support local verification without changing browser data.
+window.SOPDashboard={snapshot:()=>clone(state),validate,notices,labelTime,markdown};
+</script>
+</body></html>
